@@ -1,0 +1,9 @@
+{
+  "name": "readable-frontend",
+  "version": "1.0.0",
+  "description": "a content and comment web app",
+  "main": "index.js",
+  "repository": "git@github.com:junagao/readable-frontend.git",
+  "author": "Juliane Nagao <julianens@gmail.com>",
+  "license": "MIT"
+}
