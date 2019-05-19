@@ -2,10 +2,14 @@
   "name": "readable-frontend",
   "version": "1.0.0",
   "description": "a content and comment web app",
-  "main": "index.js",
+  "private": true,
   "repository": "git@github.com:junagao/readable-frontend.git",
   "author": "Juliane Nagao <julianens@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
+  },
   "devDependencies": {
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",
