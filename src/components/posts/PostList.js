@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAllPosts as getAllPostsAction, getPostsByCategory as getPostsByCategoryAction } from '../../actions/posts';
 import PostItem from './PostItem';
+import './PostList.scss';
 
 class PostList extends React.Component {
   componentDidMount() {

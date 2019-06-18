@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Rating from '../Rating';
+import './PostItem.scss';
 
 const PostItem = ({
   id, title, author, timestamp, category, commentCount, voteScore,
