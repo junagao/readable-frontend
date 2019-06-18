@@ -1,0 +1,36 @@
+.menu-container {
+  background-color: #F36F59;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.menu-left {
+  display: flex;
+}
+
+.logo {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.menu-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: small;
+}
+
+.create-post {
+  color: #fff;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.separator {
+  color: #fff;
+}

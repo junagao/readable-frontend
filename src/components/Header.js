@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
 
+import './Header.scss';
+
 const Header = () => (
   <div className="menu-container">
     <div className="menu-left">
