@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './Header';
-import PostList from './PostList';
-import PostDetails from './PostDetails';
-import PostCreate from './PostCreate';
-import PostEdit from './PostEdit';
-import PostDelete from './PostDelete';
+import PostList from './posts/PostList';
+import PostDetails from './posts/PostDetails';
+import PostCreate from './posts/PostCreate';
+import PostEdit from './posts/PostEdit';
+import PostDelete from './posts/PostDelete';
 import PageNotFound from './PageNotFound';
 
 import './App.scss';
