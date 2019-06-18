@@ -9,6 +9,7 @@ const Header = () => (
     </div>
     <div className="menu-right">
       <Link to="/posts/new" className="create-post">add new post</Link>
+      <span className="separator">|</span>
       <GoogleAuth />
     </div>
   </div>
