@@ -7,19 +7,19 @@ import './PostList.scss';
 
 class PostList extends React.Component {
   componentDidMount() {
-    const { getAllPosts, getPostsByCategory, category } = this.props;
-    if (category) {
-      getPostsByCategory(category);
+    const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
+    if (selectedCategory) {
+      getPostsByCategory(selectedCategory);
     } else {
       getAllPosts();
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { getAllPosts, getPostsByCategory, category } = this.props;
-    if (prevProps.category !== category && category !== null) {
-      getPostsByCategory(category);
-    } else if (prevProps.category !== category && category === null) {
+    const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
+    if (prevProps.selectedCategory !== selectedCategory && selectedCategory !== null) {
+      getPostsByCategory(selectedCategory);
+    } else if (prevProps.selectedCategory !== selectedCategory && selectedCategory === null) {
       getAllPosts();
     }
   }
@@ -54,17 +54,18 @@ class PostList extends React.Component {
 
 PostList.propTypes = {
   posts: PropTypes.instanceOf(Object).isRequired,
-  category: PropTypes.string,
+  selectedCategory: PropTypes.string,
   getAllPosts: PropTypes.func.isRequired,
   getPostsByCategory: PropTypes.func.isRequired,
 };
 
 PostList.defaultProps = {
-  category: null,
+  selectedCategory: null,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   posts: state.posts,
+  selectedCategory: ownProps.match.params.category,
 });
 
 const mapDispatchToProps = {
