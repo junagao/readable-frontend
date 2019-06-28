@@ -20,7 +20,7 @@ const PostItem = ({
           {`in ${category} `}
         </span>
         <span className="post-date">
-          {moment(timestamp).startOf('hour').fromNow()}
+          {moment(timestamp).startOf('minute').fromNow()}
         </span>
         <span className="post-details-separator">|</span>
         <button className="edit-bt" type="button">edit</button>
