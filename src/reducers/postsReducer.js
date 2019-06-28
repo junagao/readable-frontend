@@ -2,6 +2,7 @@ import {
   GET_ALL_POSTS,
   GET_POSTS_BY_CATEGORY,
   GET_SINGLE_POST,
+  CREATE_POST,
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -11,6 +12,8 @@ export default (state = {}, action) => {
     case GET_POSTS_BY_CATEGORY:
       return action.payload;
     case GET_SINGLE_POST:
+      return { ...state, [action.payload.id]: action.payload };
+    case CREATE_POST:
       return { ...state, [action.payload.id]: action.payload };
     default:
       return state;

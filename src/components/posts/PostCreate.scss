@@ -1,0 +1,33 @@
+.new-post {
+  padding: 10px;
+}
+
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea, select {
+  width: 500px;
+  border-radius: 3px;
+  border: 1px solid grey;
+  padding: 5px;
+  margin-bottom: 8px;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: 0;
+}
+
+.error-message {
+  color: red;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.field.error input, .field.error textarea {
+  border-color: #e0b4b4;
+  background-color: #fff6f6;
+}
