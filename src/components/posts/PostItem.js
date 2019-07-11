@@ -11,7 +11,7 @@ const PostItem = ({
   <div className="post-item">
     <Rating currentRating={voteScore} />
     <div className="post-content">
-      <Link to={`/${category}/${id}`} className="post-title">{title}</Link>
+      <Link to={`/posts/${category}/${id}`} className="post-title">{title}</Link>
       <p className="post-details">
         <span className="post-author">
           {`by ${author} `}
@@ -25,7 +25,7 @@ const PostItem = ({
         <span className="post-details-separator">|</span>
         {author === currentUserName && (
           <span>
-            <button className="edit-bt" type="button">edit</button>
+            <Link to={`/posts/edit/${id}`} className="edit-bt" type="button">edit</Link>
             <span className="post-details-separator">|</span>
             <button className="delete-bt" type="button">delete</button>
             <span className="post-details-separator">|</span>

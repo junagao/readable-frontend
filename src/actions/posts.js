@@ -52,6 +52,7 @@ export const editPost = (id, formValues) => async (dispatch) => {
     type: EDIT_POST,
     payload: response.data,
   });
+  history.push('/');
 };
 
 export const deletePost = id => async (dispatch) => {
