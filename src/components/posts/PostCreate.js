@@ -9,12 +9,14 @@ import './PostCreate.scss';
 
 class PostCreate extends React.Component {
   onSubmit = (formValues) => {
-    const { createPost, author } = this.props;
+    const { createPost, author, history: { push } } = this.props;
     const timestamp = Date.now();
     const id = uuid();
     createPost({
       ...formValues, author, timestamp, id,
-    });
+    }).then(
+      push('/'),
+    );
   }
 
   renderError = ({ error, touched }) => {
@@ -69,6 +71,7 @@ PostCreate.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   createPost: PropTypes.func.isRequired,
   author: PropTypes.string,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 PostCreate.defaultProps = {

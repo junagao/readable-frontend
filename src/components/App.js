@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import Header from './Header';
 import PostList from './posts/PostList';
 import PostDetails from './posts/PostDetails';
@@ -7,11 +7,12 @@ import PostCreate from './posts/PostCreate';
 import PostEdit from './posts/PostEdit';
 import PostDelete from './posts/PostDelete';
 import PageNotFound from './PageNotFound';
+import history from '../history';
 
 import './App.scss';
 
 const App = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <div className="app-container">
       <Header />
       <Switch>
@@ -24,7 +25,7 @@ const App = () => (
         <Route component={PageNotFound} />
       </Switch>
     </div>
-  </BrowserRouter>
+  </Router>
 );
 
 export default App;
