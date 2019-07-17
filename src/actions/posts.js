@@ -61,6 +61,7 @@ export const deletePost = id => async (dispatch) => {
     type: DELETE_POST,
     payload: id,
   });
+  history.push('/');
 };
 
 export const voteUpPost = id => async (dispatch) => {

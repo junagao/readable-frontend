@@ -27,7 +27,7 @@ const PostItem = ({
           <span>
             <Link to={`/posts/edit/${id}`} className="edit-bt" type="button">edit</Link>
             <span className="post-details-separator">|</span>
-            <button className="delete-bt" type="button">delete</button>
+            <Link to={`/posts/delete/${id}`} className="delete-bt" type="button">delete</Link>
             <span className="post-details-separator">|</span>
           </span>
         )}
