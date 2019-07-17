@@ -1,5 +1,5 @@
 import api from '../api';
-
+import history from '../history';
 import {
   GET_ALL_POSTS,
   GET_POSTS_BY_CATEGORY,
@@ -43,6 +43,7 @@ export const createPost = formValues => async (dispatch) => {
     type: CREATE_POST,
     payload: response.data,
   });
+  history.push('/');
 };
 
 export const editPost = (id, formValues) => async (dispatch) => {
@@ -51,6 +52,7 @@ export const editPost = (id, formValues) => async (dispatch) => {
     type: EDIT_POST,
     payload: response.data,
   });
+  history.push('/');
 };
 
 export const deletePost = id => async (dispatch) => {
@@ -59,6 +61,7 @@ export const deletePost = id => async (dispatch) => {
     type: DELETE_POST,
     payload: id,
   });
+  history.push('/');
 };
 
 export const voteUpPost = id => async (dispatch) => {

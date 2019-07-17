@@ -25,7 +25,7 @@ class PostList extends React.Component {
   }
 
   renderPosts = () => {
-    const { posts } = this.props;
+    const { posts, currentUserName } = this.props;
 
     return (
       <div>
@@ -33,7 +33,7 @@ class PostList extends React.Component {
           ? (
             posts.map(post => (
               <div className="post" key={post.id}>
-                <PostItem {...post} />
+                <PostItem {...post} currentUserName={currentUserName} />
               </div>
             ))
           )
@@ -57,15 +57,18 @@ PostList.propTypes = {
   selectedCategory: PropTypes.string,
   getAllPosts: PropTypes.func.isRequired,
   getPostsByCategory: PropTypes.func.isRequired,
+  currentUserName: PropTypes.string,
 };
 
 PostList.defaultProps = {
   selectedCategory: null,
+  currentUserName: null,
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  posts: state.posts,
+  posts: Object.values(state.posts),
   selectedCategory: ownProps.match.params.category,
+  currentUserName: state.auth.userName,
 });
 
 const mapDispatchToProps = {
