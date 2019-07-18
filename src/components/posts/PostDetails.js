@@ -41,8 +41,6 @@ class PostDetails extends React.Component {
       voteUpPost,
       voteDownPost,
     } = post;
-    console.log('author', author);
-    console.log('currentUserName', currentUserName);
     return (
       <div className="post-item">
         <Rating
