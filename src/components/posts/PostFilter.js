@@ -1,16 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './PostFilter.scss';
 
-const Filter = () => (
+const Filter = ({ sortPostsBy }) => (
   <div className="posts-filter">
     <div className="sort">sort by:</div>
     <div>
-      <button value="date" type="button">date</button>
+      <button onClick={() => sortPostsBy('date')} value="date" type="button">date</button>
       <span className="post-details-separator">|</span>
-      <button value="vote" type="button">vote</button>
+      <button onClick={() => sortPostsBy('vote')} alue="vote" type="button">vote</button>
     </div>
   </div>
 );
+
+Filter.propTypes = {
+  sortPostsBy: PropTypes.string,
+};
+
+Filter.defaultProps = {
+  sortPostsBy: 'date',
+};
 
 export default Filter;
