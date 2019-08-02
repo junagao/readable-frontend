@@ -8,6 +8,7 @@ import {
   voteDownPost as voteDownPostAction,
 } from '../../actions/posts';
 import PostItem from './PostItem';
+import PostFilter from './PostFilter';
 import './PostList.scss';
 
 class PostList extends React.Component {
@@ -68,8 +69,11 @@ class PostList extends React.Component {
 
   render() {
     return (
-      <div className="posts-container">
-        {this.renderPosts()}
+      <div>
+        <PostFilter />
+        <div className="posts-container">
+          {this.renderPosts()}
+        </div>
       </div>
     );
   }

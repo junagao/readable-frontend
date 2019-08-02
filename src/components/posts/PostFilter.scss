@@ -1,0 +1,27 @@
+.posts-filter {
+  display: flex;
+}
+
+.sort {
+  margin-right: 10px; 
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: small;
+  padding: 0;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.post-details-separator {
+  color: lightgray;
+  margin: 0 5px;
+}
