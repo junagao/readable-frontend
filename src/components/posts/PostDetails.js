@@ -8,7 +8,9 @@ import {
   voteUpPost as voteUpPostAction,
   voteDownPost as voteDownPostAction,
 } from '../../actions/posts';
+import { getAllComments as getAllCommentsAction } from '../../actions/comments';
 import Rating from '../Rating';
+import CommentList from '../comments/CommentList';
 
 import './PostDetails.scss';
 
@@ -19,10 +21,15 @@ class PostDetails extends React.Component {
       match: {
         params: { postId },
       },
-      getAllCommentsByPostId,
+      getAllComments,
     } = this.props;
     getSinglePost(postId);
+    getAllComments(postId);
   }
+
+  handleComment = () => (
+    <div>add new comment</div>
+  );
 
   onVoteUpPost = (id) => {
     const { voteUpPost } = this.props;
@@ -35,7 +42,11 @@ class PostDetails extends React.Component {
   }
 
   render() {
-    const { post, comments } = this.props;
+    const {
+      post,
+      comments,
+    } = this.props;
+
     if (!post) {
       return <div>Loading...</div>;
     }
@@ -94,20 +105,18 @@ class PostDetails extends React.Component {
                 </span>
               </React.Fragment>
             )}
+            <span className="post-details-separator">|</span>
+            <span className="post-comments">
+              {commentCount === 1
+                ? `${commentCount} comment`
+                : `${commentCount} comments`}
+            </span>
+            <span className="post-details-separator">|</span>
+            <span className="post-comment-reply">
+              <button onClick={this.handleComment} type="button">add comment</button>
+            </span>
           </p>
-          {commentCount > 0 && comments.map(comment => (
-            <div className="comment-content" key={comment.id}>
-              <p>{comment.body}</p>
-              <p className="comment-details">
-                <span className="comment-author">{`by ${comment.author} `}</span>
-                <span className="comment-date">
-                  {moment(comment.timestamp)
-                    .startOf('minute')
-                    .fromNow()}
-                </span>
-              </p>
-            </div>
-          ))}
+          <CommentList comments={comments} commentCount={commentCount} />
         </div>
       </div>
     );
@@ -120,7 +129,7 @@ PostDetails.propTypes = {
   post: PropTypes.instanceOf(Object),
   voteUpPost: PropTypes.func.isRequired,
   voteDownPost: PropTypes.func.isRequired,
-  getAllCommentsByPostId: PropTypes.func.isRequired,
+  getAllComments: PropTypes.func.isRequired,
   comments: PropTypes.instanceOf(Object).isRequired,
 };
 
@@ -136,9 +145,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = {
   getSinglePost: getSinglePostAction,
-  getAllCommentsByPostId: getAllCommentsByPostIdAction,
   voteUpPost: voteUpPostAction,
   voteDownPost: voteDownPostAction,
+  getAllComments: getAllCommentsAction,
 };
 
 export default connect(
