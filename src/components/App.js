@@ -21,7 +21,7 @@ const App = () => (
         <Route exact path="/posts/edit/:postId" component={PostEdit} />
         <Route exact path="/posts/delete/:postId/" component={PostDelete} />
         <Route exact path="/posts/:category" component={PostList} />
-        <Route exact path="/posts/:category/:postId" component={PostDetails} />
+        <Route exact path="/:category/:postId" component={PostDetails} />
         <Route component={PageNotFound} />
       </Switch>
     </div>
