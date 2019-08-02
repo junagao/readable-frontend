@@ -6,6 +6,8 @@ import {
   CREATE_POST,
   EDIT_POST,
   DELETE_POST,
+  VOTE_UP_POST,
+  VOTE_DOWN_POST,
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -22,6 +24,10 @@ export default (state = {}, action) => {
       return { [action.payload.id]: action.payload };
     case DELETE_POST:
       return _.omit(state, action.payload);
+    case VOTE_UP_POST:
+      return { ...state, [action.payload.id]: action.payload };
+    case VOTE_DOWN_POST:
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }

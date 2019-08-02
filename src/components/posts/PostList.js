@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAllPosts as getAllPostsAction, getPostsByCategory as getPostsByCategoryAction } from '../../actions/posts';
+import {
+  getAllPosts as getAllPostsAction,
+  getPostsByCategory as getPostsByCategoryAction,
+  voteUpPost as voteUpPostAction,
+  voteDownPost as voteDownPostAction,
+} from '../../actions/posts';
 import PostItem from './PostItem';
 import './PostList.scss';
 
@@ -25,7 +30,10 @@ class PostList extends React.Component {
   }
 
   renderPosts = () => {
-    const { posts, currentUserName } = this.props;
+    const {
+      posts,
+      currentUserName,
+    } = this.props;
 
     return (
       <div>
@@ -33,7 +41,12 @@ class PostList extends React.Component {
           ? (
             posts.map(post => (
               <div className="post" key={post.id}>
-                <PostItem {...post} currentUserName={currentUserName} />
+                <PostItem
+                  {...post}
+                  currentUserName={currentUserName}
+                  onVoteUpPost={this.onVoteUpPost}
+                  onVoteDownPost={this.onVoteDownPost}
+                />
               </div>
             ))
           )
@@ -41,6 +54,16 @@ class PostList extends React.Component {
         }
       </div>
     );
+  }
+
+  onVoteUpPost = (id) => {
+    const { voteUpPost } = this.props;
+    voteUpPost(id);
+  }
+
+  onVoteDownPost = (id) => {
+    const { voteDownPost } = this.props;
+    voteDownPost(id);
   }
 
   render() {
@@ -58,6 +81,8 @@ PostList.propTypes = {
   getAllPosts: PropTypes.func.isRequired,
   getPostsByCategory: PropTypes.func.isRequired,
   currentUserName: PropTypes.string,
+  voteUpPost: PropTypes.func.isRequired,
+  voteDownPost: PropTypes.func.isRequired,
 };
 
 PostList.defaultProps = {
@@ -74,6 +99,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = {
   getAllPosts: getAllPostsAction,
   getPostsByCategory: getPostsByCategoryAction,
+  voteUpPost: voteUpPostAction,
+  voteDownPost: voteDownPostAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList);
