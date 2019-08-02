@@ -29,8 +29,8 @@ export const getPostsByCategory = category => async (dispatch) => {
   });
 };
 
-export const getSinglePost = id => async (dispatch) => {
-  const response = await api.post(`/posts/${id}`);
+export const getSinglePost = postId => async (dispatch) => {
+  const response = await api.post(`/posts/${postId}`);
   dispatch({
     type: GET_SINGLE_POST,
     payload: response.data,
@@ -46,8 +46,8 @@ export const createPost = formValues => async (dispatch) => {
   history.push('/');
 };
 
-export const editPost = (id, formValues) => async (dispatch) => {
-  const response = await api.put(`/posts/${id}`, formValues);
+export const editPost = (postId, formValues) => async (dispatch) => {
+  const response = await api.put(`/posts/${postId}`, formValues);
   dispatch({
     type: EDIT_POST,
     payload: response.data,
@@ -55,11 +55,11 @@ export const editPost = (id, formValues) => async (dispatch) => {
   history.push('/');
 };
 
-export const deletePost = id => async (dispatch) => {
-  await api.delete(`/posts/${id}`);
+export const deletePost = postId => async (dispatch) => {
+  await api.delete(`/posts/${postId}`);
   dispatch({
     type: DELETE_POST,
-    payload: id,
+    payload: postId,
   });
   history.push('/');
 };
