@@ -25,7 +25,7 @@ const PostItem = ({
       onVoteDownPost={onVoteDownPost}
     />
     <div className="post-content">
-      <Link to={`/posts/${category}/${id}`} className="post-title">
+      <Link to={`/${category}/${id}`} className="post-title">
         {title}
       </Link>
       <p className="post-details">
