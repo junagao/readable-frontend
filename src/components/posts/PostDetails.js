@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { getSinglePost as getSinglePostAction } from '../../actions/posts';
-import { getAllCommentsByPostId as getAllCommentsByPostIdAction } from '../../actions/comments';
+import {
+  getSinglePost as getSinglePostAction,
+  voteUpPost as voteUpPostAction,
+  voteDownPost as voteDownPostAction,
+} from '../../actions/posts';
 import Rating from '../Rating';
 
 import './PostDetails.scss';
@@ -19,7 +22,16 @@ class PostDetails extends React.Component {
       getAllCommentsByPostId,
     } = this.props;
     getSinglePost(postId);
-    getAllCommentsByPostId(postId);
+  }
+
+  onVoteUpPost = (id) => {
+    const { voteUpPost } = this.props;
+    voteUpPost(id);
+  }
+
+  onVoteDownPost = (id) => {
+    const { voteDownPost } = this.props;
+    voteDownPost(id);
   }
 
   render() {
@@ -38,16 +50,15 @@ class PostDetails extends React.Component {
       commentCount,
       voteScore,
       currentUserName,
-      voteUpPost,
-      voteDownPost,
     } = post;
+
     return (
       <div className="post-item">
         <Rating
           id={id}
           currentRating={voteScore}
-          voteUpPost={voteUpPost}
-          voteDownPost={voteDownPost}
+          onVoteUpPost={this.onVoteUpPost}
+          onVoteDownPost={this.onVoteDownPost}
         />
         <div className="post-content">
           <h1 className="post-title">{title}</h1>
@@ -107,6 +118,8 @@ PostDetails.propTypes = {
   getSinglePost: PropTypes.func.isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
   post: PropTypes.instanceOf(Object),
+  voteUpPost: PropTypes.func.isRequired,
+  voteDownPost: PropTypes.func.isRequired,
   getAllCommentsByPostId: PropTypes.func.isRequired,
   comments: PropTypes.instanceOf(Object).isRequired,
 };
@@ -124,6 +137,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = {
   getSinglePost: getSinglePostAction,
   getAllCommentsByPostId: getAllCommentsByPostIdAction,
+  voteUpPost: voteUpPostAction,
+  voteDownPost: voteDownPostAction,
 };
 
 export default connect(
