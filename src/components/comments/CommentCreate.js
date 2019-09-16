@@ -6,12 +6,13 @@ import { createComment as createCommentAction } from '../../actions/comments';
 import CommentForm from './CommentForm';
 
 class CommentCreate extends React.Component {
-  state = {
-    showCommentCreate: true,
-  }
-
   onSubmit = (formValues) => {
-    const { createComment, author, parentId } = this.props;
+    const {
+      createComment,
+      author,
+      parentId,
+      onCancelCreateComment,
+    } = this.props;
     const timestamp = Date.now();
     const id = uuid();
     createComment({
@@ -21,19 +22,15 @@ class CommentCreate extends React.Component {
       id,
       parentId,
     });
-    this.setState({ showCommentCreate: false });
+    onCancelCreateComment();
   };
 
   render() {
-    const { showCommentCreate } = this.state;
+    const { onCancelCreateComment } = this.props;
     return (
       <div>
-        {showCommentCreate ? (
-          <React.Fragment>
-            <h3>Create Comment</h3>
-            <CommentForm onSubmit={this.onSubmit} />
-          </React.Fragment>
-        ) : null}
+        <h3>Create Comment</h3>
+        <CommentForm onSubmit={this.onSubmit} onCancelCreateComment={onCancelCreateComment} />
       </div>
     );
   }
@@ -43,6 +40,7 @@ CommentCreate.propTypes = {
   createComment: PropTypes.func.isRequired,
   author: PropTypes.string,
   parentId: PropTypes.string.isRequired,
+  onCancelCreateComment: PropTypes.func.isRequired,
 };
 
 CommentCreate.defaultProps = {

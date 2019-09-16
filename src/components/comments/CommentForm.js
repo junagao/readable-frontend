@@ -34,13 +34,14 @@ class CommentForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, onCancelCreateComment } = this.props;
     return (
       <div className="new-comment">
         <p>New Comment</p>
         <form className="new-comment-form" onSubmit={handleSubmit(this.onSubmit)}>
           <Field name="body" type="textarea" component={this.renderInput} placeholder="Enter comment" />
           <button className="submit-form-button" type="submit">Submit</button>
+          <button type="button" onClick={onCancelCreateComment}>Cancel</button>
         </form>
       </div>
     );
@@ -50,6 +51,7 @@ class CommentForm extends React.Component {
 CommentForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onCancelCreateComment: PropTypes.func.isRequired,
 };
 
 const validate = (formValues) => {
