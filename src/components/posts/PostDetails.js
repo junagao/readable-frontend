@@ -11,10 +11,15 @@ import {
 import { getAllComments as getAllCommentsAction } from '../../actions/comments';
 import Rating from '../Rating';
 import CommentList from '../comments/CommentList';
+import CommentCreate from '../comments/CommentCreate';
 
 import './PostDetails.scss';
 
 class PostDetails extends React.Component {
+  state = {
+    showCreateComment: false,
+  }
+
   componentDidMount() {
     const {
       getSinglePost,
@@ -27,9 +32,9 @@ class PostDetails extends React.Component {
     getAllComments(postId);
   }
 
-  handleComment = () => (
-    <div>add new comment</div>
-  );
+  handleCreateComment = () => {
+    this.setState({ showCreateComment: true });
+  };
 
   onVoteUpPost = (id) => {
     const { voteUpPost } = this.props;
@@ -42,6 +47,7 @@ class PostDetails extends React.Component {
   }
 
   render() {
+    const { showCreateComment } = this.state;
     const {
       post,
       comments,
@@ -113,10 +119,11 @@ class PostDetails extends React.Component {
             </span>
             <span className="post-details-separator">|</span>
             <span className="post-comment-reply">
-              <button onClick={this.handleComment} type="button">add comment</button>
+              <button onClick={this.handleCreateComment} type="button">add comment</button>
             </span>
           </p>
           <CommentList comments={comments} commentCount={commentCount} />
+          {showCreateComment ? <CommentCreate parentId={id} /> : null}
         </div>
       </div>
     );

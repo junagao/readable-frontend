@@ -32,7 +32,6 @@ export const createComment = formValues => async (dispatch) => {
     type: CREATE_COMMENT,
     payload: response.data,
   });
-  history.push('/');
 };
 
 export const editComment = (formValues, commentId) => async (dispatch) => {
