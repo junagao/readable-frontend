@@ -45,6 +45,7 @@ class PostDetails extends React.Component {
     const {
       post,
       comments,
+      currentUserName,
     } = this.props;
 
     if (!post) {
@@ -61,8 +62,6 @@ class PostDetails extends React.Component {
       commentCount,
       voteScore,
     } = post;
-
-    const { currentUserName } = this.props;
 
     return (
       <div className="post-item">
