@@ -60,8 +60,9 @@ class PostDetails extends React.Component {
       category,
       commentCount,
       voteScore,
-      currentUserName,
     } = post;
+
+    const { currentUserName } = this.props;
 
     return (
       <div className="post-item">
@@ -131,10 +132,12 @@ PostDetails.propTypes = {
   voteDownPost: PropTypes.func.isRequired,
   getAllComments: PropTypes.func.isRequired,
   comments: PropTypes.instanceOf(Object).isRequired,
+  currentUserName: PropTypes.string,
 };
 
 PostDetails.defaultProps = {
   post: null,
+  currentUserName: null,
 };
 
 const mapStateToProps = (state, ownProps) => ({
