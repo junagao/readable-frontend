@@ -111,7 +111,6 @@ class PostDetails extends React.Component {
                   >
                     delete
                   </Link>
-                  <span className="post-details-separator">|</span>
                 </span>
               </React.Fragment>
             )}
@@ -126,7 +125,12 @@ class PostDetails extends React.Component {
               <button onClick={this.onCreateComment} type="button">add comment</button>
             </span>
           </p>
-          <CommentList comments={comments} commentCount={commentCount} />
+          <CommentList
+            comments={comments}
+            commentCount={commentCount}
+            author={author}
+            currentUserName={currentUserName}
+          />
           {showCommentCreate ? (
             <CommentCreate
               parentId={id}

@@ -45,9 +45,8 @@ class PostForm extends React.Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="new-post">
-        <p>New Post</p>
-        <form className="new-post-form" onSubmit={handleSubmit(this.onSubmit)}>
+      <div className="post">
+        <form className="post-form" onSubmit={handleSubmit(this.onSubmit)}>
           <Field name="title" type="input" component={this.renderInput} placeholder="Enter post title" />
           <Field name="body" type="textarea" component={this.renderInput} placeholder="Enter post content" />
           <Field name="category" type="select" component={this.renderInput} />
