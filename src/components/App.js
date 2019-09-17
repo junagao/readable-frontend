@@ -6,6 +6,8 @@ import PostDetails from './posts/PostDetails';
 import PostCreate from './posts/PostCreate';
 import PostEdit from './posts/PostEdit';
 import PostDelete from './posts/PostDelete';
+import CommentEdit from './comments/CommentEdit';
+import CommentDelete from './comments/CommentDelete';
 import PageNotFound from './PageNotFound';
 import history from '../history';
 
@@ -22,6 +24,8 @@ const App = () => (
         <Route exact path="/posts/delete/:postId/" component={PostDelete} />
         <Route exact path="/posts/:category" component={PostList} />
         <Route exact path="/:category/:postId" component={PostDetails} />
+        <Route exact path="/comments/edit/:commentId" component={CommentEdit} />
+        <Route exact path="/comments/delete/:commentId" component={CommentDelete} />
         <Route component={PageNotFound} />
       </Switch>
     </div>

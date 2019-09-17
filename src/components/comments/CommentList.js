@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import CommentItem from './CommentItem';
 
-const CommentList = ({ comments, commentCount }) => (
+const CommentList = ({
+  comments,
+  commentCount,
+  currentUserName,
+}) => (
   <div>
     {commentCount > 0 && comments.map(comment => (
       <div className="comment-content" key={comment.id}>
-        <p>{comment.body}</p>
-        <p className="comment-details">
-          <span className="comment-author">{`by ${comment.author} `}</span>
-          <span className="comment-date">
-            {moment(comment.timestamp)
-              .startOf('minute')
-              .fromNow()}
-          </span>
-        </p>
+        <CommentItem
+          {...comment}
+          currentUserName={currentUserName}
+        />
       </div>
     ))}
   </div>
@@ -23,6 +22,11 @@ const CommentList = ({ comments, commentCount }) => (
 CommentList.propTypes = {
   comments: PropTypes.instanceOf(Object).isRequired,
   commentCount: PropTypes.number.isRequired,
+  currentUserName: PropTypes.string,
+};
+
+CommentList.defaultProps = {
+  currentUserName: null,
 };
 
 export default CommentList;

@@ -7,7 +7,12 @@ import CommentForm from './CommentForm';
 
 class CommentCreate extends React.Component {
   onSubmit = (formValues) => {
-    const { createComment, author } = this.props;
+    const {
+      createComment,
+      author,
+      parentId,
+      onCancelCreateComment,
+    } = this.props;
     const timestamp = Date.now();
     const id = uuid();
     createComment({
@@ -15,14 +20,17 @@ class CommentCreate extends React.Component {
       author,
       timestamp,
       id,
+      parentId,
     });
+    onCancelCreateComment();
   };
 
   render() {
+    const { onCancelCreateComment } = this.props;
     return (
       <div>
         <h3>Create Comment</h3>
-        <CommentForm onSubmit={this.onSubmit} />
+        <CommentForm onSubmit={this.onSubmit} onCancelCreateComment={onCancelCreateComment} />
       </div>
     );
   }
@@ -31,6 +39,8 @@ class CommentCreate extends React.Component {
 CommentCreate.propTypes = {
   createComment: PropTypes.func.isRequired,
   author: PropTypes.string,
+  parentId: PropTypes.string.isRequired,
+  onCancelCreateComment: PropTypes.func.isRequired,
 };
 
 CommentCreate.defaultProps = {

@@ -32,16 +32,15 @@ export const createComment = formValues => async (dispatch) => {
     type: CREATE_COMMENT,
     payload: response.data,
   });
-  history.push('/');
 };
 
-export const editComment = (formValues, commentId) => async (dispatch) => {
+export const editComment = (commentId, formValues) => async (dispatch) => {
   const response = await api.put(`/comments/${commentId}`, formValues);
   dispatch({
     type: EDIT_COMMENT,
     payload: response.data,
   });
-  history.push('/');
+  history.goBack();
 };
 
 export const deleteComment = commentId => async (dispatch) => {
@@ -50,7 +49,7 @@ export const deleteComment = commentId => async (dispatch) => {
     type: DELETE_COMMENT,
     payload: commentId,
   });
-  history.push('/');
+  history.goBack();
 };
 
 export const voteUpComment = id => async (dispatch) => {
