@@ -3,6 +3,8 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import './CommentItem.scss';
+
 const CommentItem = ({
   id,
   body,
