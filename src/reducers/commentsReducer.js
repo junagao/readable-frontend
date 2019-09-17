@@ -5,6 +5,8 @@ import {
   CREATE_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
+  VOTE_UP_COMMENT,
+  VOTE_DOWN_COMMENT,
 } from '../actions/types';
 
 export default (state = {}, action) => {
@@ -19,6 +21,10 @@ export default (state = {}, action) => {
       return { [action.payload.id]: action.payload };
     case DELETE_COMMENT:
       return _.omit(state, action.payload);
+    case VOTE_UP_COMMENT:
+      return { ...state, [action.payload.id]: action.payload };
+    case VOTE_DOWN_COMMENT:
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }

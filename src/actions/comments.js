@@ -52,16 +52,16 @@ export const deleteComment = commentId => async (dispatch) => {
   history.goBack();
 };
 
-export const voteUpComment = id => async (dispatch) => {
-  const response = await api.post(`/comments/${id}`, { option: 'upVote' });
+export const voteUpComment = commentId => async (dispatch) => {
+  const response = await api.post(`/comments/${commentId}`, { option: 'upVote' });
   dispatch({
     type: VOTE_UP_COMMENT,
     payload: response.data,
   });
 };
 
-export const voteDownComment = id => async (dispatch) => {
-  const response = await api.post(`/comments/${id}`, { option: 'downVote' });
+export const voteDownComment = commentId => async (dispatch) => {
+  const response = await api.post(`/comments/${commentId}`, { option: 'downVote' });
   dispatch({
     type: VOTE_DOWN_COMMENT,
     payload: response.data,
