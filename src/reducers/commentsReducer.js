@@ -14,7 +14,7 @@ export default (state = {}, action) => {
     case GET_ALL_COMMENTS:
       return { ..._.mapKeys(action.payload, 'id') };
     case GET_SINGLE_COMMENT:
-      return { ...state, [action.payload.id]: action.payload };
+      return { [action.payload.id]: action.payload };
     case CREATE_COMMENT:
       return { ...state, [action.payload.id]: action.payload };
     case EDIT_COMMENT:
