@@ -36,6 +36,19 @@ class PostDetails extends React.Component {
     getAllComments(postId);
   }
 
+  componentDidUpdate(prevProps) {
+    const {
+      comments,
+      getSinglePost,
+      match: {
+        params: { postId },
+      },
+    } = this.props;
+    if (prevProps.comments.length < comments.length) {
+      getSinglePost(postId);
+    }
+  }
+
   onCreateComment = () => {
     this.setState({ showCommentCreate: true });
   };
