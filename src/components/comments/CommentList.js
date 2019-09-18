@@ -6,23 +6,28 @@ const CommentList = ({
   comments,
   commentCount,
   currentUserName,
+  onVoteUpComment,
+  onVoteDownComment,
 }) => (
-  <div>
+  <React.Fragment>
     {commentCount > 0 && comments.map(comment => (
-      <div className="comment-content" key={comment.id}>
-        <CommentItem
-          {...comment}
-          currentUserName={currentUserName}
-        />
-      </div>
+      <CommentItem
+        {...comment}
+        key={comment.id}
+        currentUserName={currentUserName}
+        onVoteUpComment={onVoteUpComment}
+        onVoteDownComment={onVoteDownComment}
+      />
     ))}
-  </div>
+  </React.Fragment>
 );
 
 CommentList.propTypes = {
   comments: PropTypes.instanceOf(Object).isRequired,
   commentCount: PropTypes.number.isRequired,
   currentUserName: PropTypes.string,
+  onVoteUpComment: PropTypes.func.isRequired,
+  onVoteDownComment: PropTypes.func.isRequired,
 };
 
 CommentList.defaultProps = {
