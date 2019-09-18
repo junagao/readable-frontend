@@ -23,7 +23,11 @@ class PostList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
+    const {
+      getAllPosts,
+      getPostsByCategory,
+      selectedCategory,
+    } = this.props;
     if (
       prevProps.selectedCategory !== selectedCategory
       && selectedCategory !== null
