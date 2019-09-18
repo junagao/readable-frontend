@@ -46,12 +46,13 @@ const CommentItem = ({
 CommentItem.propTypes = {
   id: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   timestamp: PropTypes.number.isRequired,
   currentUserName: PropTypes.string,
 };
 
 CommentItem.defaultProps = {
+  author: null,
   currentUserName: null,
 };
 
