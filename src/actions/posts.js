@@ -63,16 +63,16 @@ export const deletePost = postId => async (dispatch) => {
   history.push('/');
 };
 
-export const voteUpPost = id => async (dispatch) => {
-  const response = await api.post(`/posts/${id}`, { option: 'upVote' });
+export const voteUpPost = postId => async (dispatch) => {
+  const response = await api.post(`/posts/${postId}`, { option: 'upVote' });
   dispatch({
     type: VOTE_UP_POST,
     payload: response.data,
   });
 };
 
-export const voteDownPost = id => async (dispatch) => {
-  const response = await api.post(`/posts/${id}`, { option: 'downVote' });
+export const voteDownPost = postId => async (dispatch) => {
+  const response = await api.post(`/posts/${postId}`, { option: 'downVote' });
   dispatch({
     type: VOTE_DOWN_POST,
     payload: response.data,
