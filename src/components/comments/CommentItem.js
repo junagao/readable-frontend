@@ -11,10 +11,10 @@ const CommentItem = ({
   body,
   author,
   timestamp,
+  voteScore,
   currentUserName,
   onVoteUpComment,
   onVoteDownComment,
-  voteScore,
 }) => (
   <div className="comment-item">
     <Rating
@@ -33,22 +33,26 @@ const CommentItem = ({
             .fromNow()}
         </span>
         {author === currentUserName && (
-        <React.Fragment>
-          <span className="comment-details-separator">|</span>
-          <span>
-            <Link to={`/comments/edit/${id}`} className="edit-bt" type="button">
-              edit
-            </Link>
+          <>
             <span className="comment-details-separator">|</span>
-            <Link
-              to={`/comments/delete/${id}`}
-              className="delete-bt"
-              type="button"
-            >
-              delete
-            </Link>
-          </span>
-        </React.Fragment>
+            <span>
+              <Link
+                to={`/comments/edit/${id}`}
+                className="edit-bt"
+                type="button"
+              >
+                edit
+              </Link>
+              <span className="comment-details-separator">|</span>
+              <Link
+                to={`/comments/delete/${id}`}
+                className="delete-bt"
+                type="button"
+              >
+                delete
+              </Link>
+            </span>
+          </>
         )}
       </p>
     </div>

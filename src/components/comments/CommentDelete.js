@@ -12,18 +12,24 @@ class CommentDelete extends React.Component {
   componentDidMount() {
     const {
       getSingleComment,
-      match: { params: { commentId } },
+      match: {
+        params: { commentId },
+      },
     } = this.props;
+
     getSingleComment(commentId);
   }
 
   renderActions = () => {
     const {
       deleteComment,
-      match: { params: { commentId } },
+      match: {
+        params: { commentId },
+      },
     } = this.props;
+
     return (
-      <React.Fragment>
+      <>
         <button
           onClick={() => deleteComment(commentId)}
           className="delete"
@@ -31,18 +37,24 @@ class CommentDelete extends React.Component {
         >
           Delete
         </button>
-        <button onClick={() => history.goBack()} className="cancel" type="button">
+        <button
+          onClick={() => history.goBack()}
+          className="cancel"
+          type="button"
+        >
           Cancel
         </button>
-      </React.Fragment>
+      </>
     );
   };
 
   renderContent = () => {
     const { comment } = this.props;
+
     if (!comment) {
       return 'Are you sure you want to delete this comment?';
     }
+
     return `Are you sure you want to delete the comment with title: ${comment.title}`;
   };
 
@@ -78,4 +90,7 @@ const mapDispatchToProps = {
   deleteComment: deleteCommentAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentDelete);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CommentDelete);

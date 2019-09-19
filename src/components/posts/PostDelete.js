@@ -13,18 +13,24 @@ class PostDelete extends React.Component {
   componentDidMount() {
     const {
       getSinglePost,
-      match: { params: { postId } },
+      match: {
+        params: { postId },
+      },
     } = this.props;
+
     getSinglePost(postId);
   }
 
   renderActions = () => {
     const {
       deletePost,
-      match: { params: { postId } },
+      match: {
+        params: { postId },
+      },
     } = this.props;
+
     return (
-      <React.Fragment>
+      <>
         <button
           onClick={() => deletePost(postId)}
           className="delete"
@@ -35,15 +41,17 @@ class PostDelete extends React.Component {
         <Link to="/" className="cancel" type="button">
           Cancel
         </Link>
-      </React.Fragment>
+      </>
     );
   };
 
   renderContent = () => {
     const { post } = this.props;
+
     if (!post) {
       return 'Are you sure you want to delete this post?';
     }
+
     return `Are you sure you want to delete the post with title: ${post.title}`;
   };
 
@@ -79,4 +87,7 @@ const mapDispatchToProps = {
   deletePost: deletePostAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDelete);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PostDelete);

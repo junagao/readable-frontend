@@ -16,6 +16,7 @@ class CommentEdit extends React.Component {
         params: { commentId },
       },
     } = this.props;
+
     getSingleComment(commentId);
   }
 
@@ -33,9 +34,11 @@ class CommentEdit extends React.Component {
 
   render() {
     const { comment } = this.props;
+
     if (!comment) {
       return <div>Loading...</div>;
     }
+
     return (
       <div>
         <h3>Edit Comment</h3>

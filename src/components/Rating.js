@@ -5,20 +5,23 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import './Rating.scss';
 
 const Rating = ({
-  id,
-  currentRating,
-  onVoteUp,
-  onVoteDown,
+  id, currentRating, onVoteUp, onVoteDown,
 }) => (
   <div className="rating">
     <div className="upvote-bt">
-      <FontAwesomeIcon onClick={() => onVoteUp(id)} icon={faChevronUp} className="vote-icon" />
+      <FontAwesomeIcon
+        onClick={() => onVoteUp(id)}
+        icon={faChevronUp}
+        className="vote-icon"
+      />
     </div>
-    <div className="rating-value">
-      {currentRating}
-    </div>
+    <div className="rating-value">{currentRating}</div>
     <div className="downvote-bt">
-      <FontAwesomeIcon onClick={() => onVoteDown(id)} icon={faChevronDown} className="vote-icon" />
+      <FontAwesomeIcon
+        onClick={() => onVoteDown(id)}
+        icon={faChevronDown}
+        className="vote-icon"
+      />
     </div>
   </div>
 );

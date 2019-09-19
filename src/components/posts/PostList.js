@@ -15,6 +15,7 @@ import './PostList.scss';
 class PostList extends React.Component {
   componentDidMount() {
     const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
+
     if (selectedCategory) {
       getPostsByCategory(selectedCategory);
     } else {
@@ -23,11 +24,8 @@ class PostList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      getAllPosts,
-      getPostsByCategory,
-      selectedCategory,
-    } = this.props;
+    const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
+
     if (
       prevProps.selectedCategory !== selectedCategory
       && selectedCategory !== null
@@ -43,28 +41,36 @@ class PostList extends React.Component {
 
   sortPosts = (posts) => {
     const { sortPostsBy } = this.props;
+
     if (sortPostsBy === 'vote') {
       return posts.sort((a, b) => a.voteScore - b.voteScore);
     }
+
     if (sortPostsBy === 'date') {
       return posts.sort((a, b) => a.timestamp - b.timestamp);
     }
+
     return posts;
   };
 
   renderPosts = () => {
     const { posts, currentUserName } = this.props;
-
     const postsToSort = [...posts];
     const sortedPosts = this.sortPosts(postsToSort);
 
     return (
       <div>
         {sortedPosts.length
-          ? posts.map(post => (
+          ? posts.map((post) => (
             <div className="post" key={post.id}>
               <PostItem
-                {...post}
+                id={post.id}
+                title={post.title}
+                author={post.author}
+                timestamp={post.timestamp}
+                category={post.category}
+                commentCount={post.commentCount}
+                voteScore={post.voteScore}
                 currentUserName={currentUserName}
                 onVoteUpPost={this.onVoteUpPost}
                 onVoteDownPost={this.onVoteDownPost}
