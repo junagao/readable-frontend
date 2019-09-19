@@ -34,6 +34,7 @@ class PostForm extends React.Component {
           <input
             placeholder={placeholder}
             name={input.name}
+            value={input.value}
             onChange={input.onChange}
           />
         )}
@@ -41,13 +42,14 @@ class PostForm extends React.Component {
           <textarea
             placeholder={placeholder}
             name={input.name}
+            value={input.value}
             onChange={input.onChange}
           />
         )}
         {type === 'select' && (
           <select
             name={input.name}
-            defaultValue={input.value}
+            value={input.value}
             onChange={input.onChange}
           >
             <option value="" disabled>
