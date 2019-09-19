@@ -24,17 +24,19 @@ class CommentForm extends React.Component {
   };
 
   renderInput = ({
-    input,
-    type,
-    placeholder,
-    meta,
+    input, type, placeholder, meta,
   }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
 
     return (
       <div className={className}>
         {type === 'textarea' && (
-          <textarea placeholder={placeholder} name={input.name} onChange={input.onChange} />
+          <textarea
+            placeholder={placeholder}
+            name={input.name}
+            value={input.value}
+            onChange={input.onChange}
+          />
         )}
         {this.renderError(meta)}
       </div>
