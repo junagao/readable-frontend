@@ -10,7 +10,7 @@ import {
   VOTE_DOWN_COMMENT,
 } from './types';
 
-export const getAllComments = postId => async (dispatch) => {
+export const getAllComments = (postId) => async (dispatch) => {
   const response = await api.get(`/posts/${postId}/comments`);
   dispatch({
     type: GET_ALL_COMMENTS,
@@ -18,7 +18,7 @@ export const getAllComments = postId => async (dispatch) => {
   });
 };
 
-export const getSingleComment = commentId => async (dispatch) => {
+export const getSingleComment = (commentId) => async (dispatch) => {
   const response = await api.get(`/comments/${commentId}`);
   dispatch({
     type: GET_SINGLE_COMMENT,
@@ -26,7 +26,7 @@ export const getSingleComment = commentId => async (dispatch) => {
   });
 };
 
-export const createComment = formValues => async (dispatch) => {
+export const createComment = (formValues) => async (dispatch) => {
   const response = await api.post('/comments/', formValues);
   dispatch({
     type: CREATE_COMMENT,
@@ -43,7 +43,7 @@ export const editComment = (commentId, formValues) => async (dispatch) => {
   history.goBack();
 };
 
-export const deleteComment = commentId => async (dispatch) => {
+export const deleteComment = (commentId) => async (dispatch) => {
   await api.delete(`/comments/${commentId}`);
   dispatch({
     type: DELETE_COMMENT,
@@ -52,7 +52,7 @@ export const deleteComment = commentId => async (dispatch) => {
   history.goBack();
 };
 
-export const voteUpComment = commentId => async (dispatch) => {
+export const voteUpComment = (commentId) => async (dispatch) => {
   const response = await api.post(`/comments/${commentId}`, { option: 'upVote' });
   dispatch({
     type: VOTE_UP_COMMENT,
@@ -60,7 +60,7 @@ export const voteUpComment = commentId => async (dispatch) => {
   });
 };
 
-export const voteDownComment = commentId => async (dispatch) => {
+export const voteDownComment = (commentId) => async (dispatch) => {
   const response = await api.post(`/comments/${commentId}`, { option: 'downVote' });
   dispatch({
     type: VOTE_DOWN_COMMENT,

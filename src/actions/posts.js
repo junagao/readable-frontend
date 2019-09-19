@@ -20,7 +20,7 @@ export const getAllPosts = () => async (dispatch) => {
   });
 };
 
-export const getPostsByCategory = category => async (dispatch) => {
+export const getPostsByCategory = (category) => async (dispatch) => {
   const response = await api.get(`/${category}/posts`);
   dispatch({
     type: GET_POSTS_BY_CATEGORY,
@@ -28,7 +28,7 @@ export const getPostsByCategory = category => async (dispatch) => {
   });
 };
 
-export const getSinglePost = postId => async (dispatch) => {
+export const getSinglePost = (postId) => async (dispatch) => {
   const response = await api.post(`/posts/${postId}`);
   dispatch({
     type: GET_SINGLE_POST,
@@ -36,7 +36,7 @@ export const getSinglePost = postId => async (dispatch) => {
   });
 };
 
-export const createPost = formValues => async (dispatch) => {
+export const createPost = (formValues) => async (dispatch) => {
   const response = await api.post('/posts', formValues);
   dispatch({
     type: CREATE_POST,
@@ -54,7 +54,7 @@ export const editPost = (postId, formValues) => async (dispatch) => {
   history.push('/');
 };
 
-export const deletePost = postId => async (dispatch) => {
+export const deletePost = (postId) => async (dispatch) => {
   await api.delete(`/posts/${postId}`);
   dispatch({
     type: DELETE_POST,
@@ -63,7 +63,7 @@ export const deletePost = postId => async (dispatch) => {
   history.push('/');
 };
 
-export const voteUpPost = postId => async (dispatch) => {
+export const voteUpPost = (postId) => async (dispatch) => {
   const response = await api.post(`/posts/${postId}`, { option: 'upVote' });
   dispatch({
     type: VOTE_UP_POST,
@@ -71,7 +71,7 @@ export const voteUpPost = postId => async (dispatch) => {
   });
 };
 
-export const voteDownPost = postId => async (dispatch) => {
+export const voteDownPost = (postId) => async (dispatch) => {
   const response = await api.post(`/posts/${postId}`, { option: 'downVote' });
   dispatch({
     type: VOTE_DOWN_POST,
@@ -79,7 +79,7 @@ export const voteDownPost = postId => async (dispatch) => {
   });
 };
 
-export const sortPostsBy = value => ({
+export const sortPostsBy = (value) => ({
   type: SORT_POSTS_BY,
   payload: value,
 });

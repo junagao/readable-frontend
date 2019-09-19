@@ -9,17 +9,22 @@ const CommentList = ({
   onVoteUpComment,
   onVoteDownComment,
 }) => (
-  <React.Fragment>
-    {commentCount > 0 && comments.map(comment => (
-      <CommentItem
-        {...comment}
-        key={comment.id}
-        currentUserName={currentUserName}
-        onVoteUpComment={onVoteUpComment}
-        onVoteDownComment={onVoteDownComment}
-      />
-    ))}
-  </React.Fragment>
+  <>
+    {commentCount > 0
+      && comments.map((comment) => (
+        <CommentItem
+          key={comment.id}
+          id={comment.id}
+          body={comment.body}
+          author={comment.author}
+          timestamp={comment.timestamp}
+          voteScore={comment.voteScore}
+          currentUserName={currentUserName}
+          onVoteUpComment={onVoteUpComment}
+          onVoteDownComment={onVoteDownComment}
+        />
+      ))}
+  </>
 );
 
 CommentList.propTypes = {

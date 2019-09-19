@@ -15,6 +15,7 @@ class CommentCreate extends React.Component {
     } = this.props;
     const timestamp = Date.now();
     const id = uuid();
+
     createComment({
       ...formValues,
       author,
@@ -27,10 +28,14 @@ class CommentCreate extends React.Component {
 
   render() {
     const { onCancelCreateComment } = this.props;
+
     return (
       <div>
         <h3>Create Comment</h3>
-        <CommentForm onSubmit={this.onSubmit} onCancelCreateComment={onCancelCreateComment} />
+        <CommentForm
+          onSubmit={this.onSubmit}
+          onCancelCreateComment={onCancelCreateComment}
+        />
       </div>
     );
   }
@@ -47,7 +52,7 @@ CommentCreate.defaultProps = {
   author: null,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   author: state.auth.userName,
 });
 

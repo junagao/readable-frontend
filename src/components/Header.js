@@ -40,7 +40,7 @@ Header.defaultProps = {
   userName: null,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isSignedIn: state.auth.isSignedIn,
   userName: state.auth.userName,
 });

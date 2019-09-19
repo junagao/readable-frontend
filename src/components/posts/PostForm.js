@@ -7,8 +7,9 @@ import './PostCreate.scss';
 class PostForm extends React.Component {
   onSubmit = (formValues) => {
     const { onSubmit } = this.props;
+
     onSubmit(formValues);
-  }
+  };
 
   renderError = ({ error, touched }) => {
     if (touched && error) {
@@ -18,20 +19,40 @@ class PostForm extends React.Component {
         </div>
       );
     }
+
     return null;
-  }
+  };
 
   renderInput = ({
     input, type, placeholder, meta,
   }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+
     return (
       <div className={className}>
-        {type === 'input' && (<input placeholder={placeholder} {...input} />)}
-        {type === 'textarea' && (<textarea placeholder={placeholder} {...input} />)}
+        {type === 'input' && (
+          <input
+            placeholder={placeholder}
+            name={input.name}
+            onChange={input.onChange}
+          />
+        )}
+        {type === 'textarea' && (
+          <textarea
+            placeholder={placeholder}
+            name={input.name}
+            onChange={input.onChange}
+          />
+        )}
         {type === 'select' && (
-          <select {...input}>
-            <option value="" disabled>Select category</option>
+          <select
+            name={input.name}
+            defaultValue={input.value}
+            onChange={input.onChange}
+          >
+            <option value="" disabled>
+              Select category
+            </option>
             <option value="react">React</option>
             <option value="redux">Redux</option>
             <option value="udacity">Udacity</option>
@@ -40,17 +61,30 @@ class PostForm extends React.Component {
         {this.renderError(meta)}
       </div>
     );
-  }
+  };
 
   render() {
     const { handleSubmit } = this.props;
+
     return (
       <div className="post">
         <form className="post-form" onSubmit={handleSubmit(this.onSubmit)}>
-          <Field name="title" type="input" component={this.renderInput} placeholder="Enter post title" />
-          <Field name="body" type="textarea" component={this.renderInput} placeholder="Enter post content" />
+          <Field
+            name="title"
+            type="input"
+            component={this.renderInput}
+            placeholder="Enter post title"
+          />
+          <Field
+            name="body"
+            type="textarea"
+            component={this.renderInput}
+            placeholder="Enter post content"
+          />
           <Field name="category" type="select" component={this.renderInput} />
-          <button className="submit-form-button" type="submit">Submit</button>
+          <button className="submit-form-button" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );

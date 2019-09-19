@@ -7,8 +7,9 @@ import './CommentForm.scss';
 class CommentForm extends React.Component {
   onSubmit = (formValues) => {
     const { onSubmit } = this.props;
+
     onSubmit(formValues);
-  }
+  };
 
   renderError = ({ error, touched }) => {
     if (touched && error) {
@@ -18,33 +19,53 @@ class CommentForm extends React.Component {
         </div>
       );
     }
+
     return null;
-  }
+  };
 
   renderInput = ({
-    input, type, placeholder, meta,
+    input,
+    type,
+    placeholder,
+    meta,
   }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+
     return (
       <div className={className}>
-        {type === 'textarea' && (<textarea placeholder={placeholder} {...input} />)}
+        {type === 'textarea' && (
+          <textarea placeholder={placeholder} name={input.name} onChange={input.onChange} />
+        )}
         {this.renderError(meta)}
       </div>
     );
-  }
+  };
 
   onCancelEditComment = () => {
     history.goBack();
-  }
+  };
 
   render() {
     const { handleSubmit, onCancelCreateComment } = this.props;
+
     return (
       <div className="comment">
         <form className="comment-form" onSubmit={handleSubmit(this.onSubmit)}>
-          <Field name="body" type="textarea" component={this.renderInput} placeholder="Enter comment" />
-          <button className="submit-form-button" type="submit">Submit</button>
-          <button type="button" onClick={onCancelCreateComment || this.onCancelEditComment}>Cancel</button>
+          <Field
+            name="body"
+            type="textarea"
+            component={this.renderInput}
+            placeholder="Enter comment"
+          />
+          <button className="submit-form-button" type="submit">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={onCancelCreateComment || this.onCancelEditComment}
+          >
+            Cancel
+          </button>
         </form>
       </div>
     );

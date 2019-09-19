@@ -11,10 +11,14 @@ class PostCreate extends React.Component {
     const { createPost, author } = this.props;
     const timestamp = Date.now();
     const id = uuid();
+
     createPost({
-      ...formValues, author, timestamp, id,
+      ...formValues,
+      author,
+      timestamp,
+      id,
     });
-  }
+  };
 
   render() {
     return (
@@ -35,7 +39,7 @@ PostCreate.defaultProps = {
   author: null,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   author: state.auth.userName,
 });
 
@@ -43,4 +47,7 @@ const mapDispatchToProps = {
   createPost: createPostAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostCreate);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PostCreate);

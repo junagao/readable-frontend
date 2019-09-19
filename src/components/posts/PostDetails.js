@@ -20,8 +20,9 @@ import CommentCreate from '../comments/CommentCreate';
 import './PostDetails.scss';
 
 class PostDetails extends React.Component {
-  state = {
-    showCommentCreate: false,
+  constructor(props) {
+    super(props);
+    this.state = { showCommentCreate: false };
   }
 
   componentDidMount() {
@@ -32,6 +33,7 @@ class PostDetails extends React.Component {
       },
       getAllComments,
     } = this.props;
+
     getSinglePost(postId);
     getAllComments(postId);
   }
@@ -44,6 +46,7 @@ class PostDetails extends React.Component {
         params: { postId },
       },
     } = this.props;
+
     if (prevProps.comments.length < comments.length) {
       getSinglePost(postId);
     }
@@ -55,35 +58,35 @@ class PostDetails extends React.Component {
 
   onCancelCreateComment = () => {
     this.setState({ showCommentCreate: false });
-  }
+  };
 
   onVoteUpPost = (id) => {
     const { voteUpPost } = this.props;
+
     voteUpPost(id);
-  }
+  };
 
   onVoteDownPost = (id) => {
     const { voteDownPost } = this.props;
+
     voteDownPost(id);
-  }
+  };
 
   onVoteUpComment = (commentId) => {
     const { voteUpComment } = this.props;
+
     voteUpComment(commentId);
   };
 
   onVoteDownComment = (commentId) => {
     const { voteDownComment } = this.props;
+
     voteDownComment(commentId);
   };
 
   render() {
     const { showCommentCreate } = this.state;
-    const {
-      post,
-      comments,
-      currentUserName,
-    } = this.props;
+    const { post, comments, currentUserName } = this.props;
 
     if (!post) {
       return <div>Loading...</div>;
@@ -120,7 +123,7 @@ class PostDetails extends React.Component {
                 .fromNow()}
             </span>
             {author === currentUserName && (
-              <React.Fragment>
+              <>
                 <span className="post-details-separator">|</span>
                 <span>
                   <Link
@@ -139,7 +142,7 @@ class PostDetails extends React.Component {
                     delete
                   </Link>
                 </span>
-              </React.Fragment>
+              </>
             )}
             <span className="post-details-separator">|</span>
             <span className="post-comments">
@@ -149,7 +152,9 @@ class PostDetails extends React.Component {
             </span>
             <span className="post-details-separator">|</span>
             <span className="post-comment-reply">
-              <button onClick={this.onCreateComment} type="button">add comment</button>
+              <button onClick={this.onCreateComment} type="button">
+                add comment
+              </button>
             </span>
           </p>
           <CommentList
