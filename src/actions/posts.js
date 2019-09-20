@@ -9,7 +9,6 @@ import {
   DELETE_POST,
   VOTE_UP_POST,
   VOTE_DOWN_POST,
-  SORT_POSTS_BY,
 } from './types';
 
 export const getAllPosts = () => async (dispatch) => {
@@ -78,8 +77,3 @@ export const voteDownPost = (postId) => async (dispatch) => {
     payload: response.data,
   });
 };
-
-export const sortPostsBy = (value) => ({
-  type: SORT_POSTS_BY,
-  payload: value,
-});
