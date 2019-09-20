@@ -13,6 +13,13 @@ import PostFilter from './PostFilter';
 import './PostList.scss';
 
 class PostList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sortPostsBy: 'date',
+    };
+  }
+
   componentDidMount() {
     const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
 
@@ -39,29 +46,37 @@ class PostList extends React.Component {
     }
   }
 
-  sortPosts = (posts) => {
-    const { sortPostsBy } = this.props;
+  sortPosts = (posts, sortPostsBy) => {
+    if (sortPostsBy === 'date') {
+      return posts.sort((a, b) => b.timestamp - a.timestamp);
+    }
 
     if (sortPostsBy === 'vote') {
       return posts.sort((a, b) => a.voteScore - b.voteScore);
     }
 
-    if (sortPostsBy === 'date') {
-      return posts.sort((a, b) => a.timestamp - b.timestamp);
-    }
-
     return posts;
   };
 
+  sortPostsBy = (value) => {
+    if (value === 'date') {
+      this.setState({ sortPostsBy: 'date' });
+    }
+    if (value === 'vote') {
+      this.setState({ sortPostsBy: 'vote' });
+    }
+  }
+
   renderPosts = () => {
+    const { sortPostsBy } = this.state;
     const { posts, currentUserName } = this.props;
     const postsToSort = [...posts];
-    const sortedPosts = this.sortPosts(postsToSort);
+    const sortedPosts = this.sortPosts(postsToSort, sortPostsBy);
 
     return (
       <div>
         {sortedPosts.length
-          ? posts.map((post) => (
+          ? sortedPosts.map((post) => (
             <div className="post" key={post.id}>
               <PostItem
                 id={post.id}
@@ -110,7 +125,6 @@ PostList.propTypes = {
   currentUserName: PropTypes.string,
   voteUpPost: PropTypes.func.isRequired,
   voteDownPost: PropTypes.func.isRequired,
-  sortPostsBy: PropTypes.func.isRequired,
 };
 
 PostList.defaultProps = {

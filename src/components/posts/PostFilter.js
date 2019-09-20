@@ -7,11 +7,11 @@ const Filter = ({ sortPostsBy }) => (
   <div className="posts-filter">
     <div className="sort">sort by:</div>
     <div>
-      <button onClick={() => sortPostsBy('date')} value="date" type="button">
+      <button onClick={(e) => sortPostsBy(e.target.value)} value="date" type="button">
         date
       </button>
       <span className="post-details-separator">|</span>
-      <button onClick={() => sortPostsBy('vote')} value="vote" type="button">
+      <button onClick={(e) => sortPostsBy(e.target.value)} value="vote" type="button">
         vote
       </button>
     </div>
@@ -19,11 +19,7 @@ const Filter = ({ sortPostsBy }) => (
 );
 
 Filter.propTypes = {
-  sortPostsBy: PropTypes.string,
-};
-
-Filter.defaultProps = {
-  sortPostsBy: 'date',
+  sortPostsBy: PropTypes.func.isRequired,
 };
 
 export default Filter;
