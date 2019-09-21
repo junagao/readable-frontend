@@ -8,13 +8,23 @@ import {
   voteUpPost as voteUpPostAction,
   voteDownPost as voteDownPostAction,
 } from '../../actions/posts';
-import { getAllComments as getAllCommentsAction } from '../../actions/comments';
+import {
+  getAllComments as getAllCommentsAction,
+  voteUpComment as voteUpCommentAction,
+  voteDownComment as voteDownCommentAction,
+} from '../../actions/comments';
 import Rating from '../Rating';
 import CommentList from '../comments/CommentList';
+import CommentCreate from '../comments/CommentCreate';
 
 import './PostDetails.scss';
 
 class PostDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showCommentCreate: false };
+  }
+
   componentDidMount() {
     const {
       getSinglePost,
@@ -23,29 +33,60 @@ class PostDetails extends React.Component {
       },
       getAllComments,
     } = this.props;
+
     getSinglePost(postId);
     getAllComments(postId);
   }
 
-  handleComment = () => (
-    <div>add new comment</div>
-  );
+  componentDidUpdate(prevProps) {
+    const {
+      comments,
+      getSinglePost,
+      match: {
+        params: { postId },
+      },
+    } = this.props;
+
+    if (prevProps.comments.length < comments.length) {
+      getSinglePost(postId);
+    }
+  }
+
+  onCreateComment = () => {
+    this.setState({ showCommentCreate: true });
+  };
+
+  onCancelCreateComment = () => {
+    this.setState({ showCommentCreate: false });
+  };
 
   onVoteUpPost = (id) => {
     const { voteUpPost } = this.props;
+
     voteUpPost(id);
-  }
+  };
 
   onVoteDownPost = (id) => {
     const { voteDownPost } = this.props;
+
     voteDownPost(id);
-  }
+  };
+
+  onVoteUpComment = (commentId) => {
+    const { voteUpComment } = this.props;
+
+    voteUpComment(commentId);
+  };
+
+  onVoteDownComment = (commentId) => {
+    const { voteDownComment } = this.props;
+
+    voteDownComment(commentId);
+  };
 
   render() {
-    const {
-      post,
-      comments,
-    } = this.props;
+    const { showCommentCreate } = this.state;
+    const { post, comments, currentUserName } = this.props;
 
     if (!post) {
       return <div>Loading...</div>;
@@ -60,7 +101,6 @@ class PostDetails extends React.Component {
       category,
       commentCount,
       voteScore,
-      currentUserName,
     } = post;
 
     return (
@@ -68,8 +108,8 @@ class PostDetails extends React.Component {
         <Rating
           id={id}
           currentRating={voteScore}
-          onVoteUpPost={this.onVoteUpPost}
-          onVoteDownPost={this.onVoteDownPost}
+          onVoteUp={this.onVoteUpPost}
+          onVoteDown={this.onVoteDownPost}
         />
         <div className="post-content">
           <h1 className="post-title">{title}</h1>
@@ -83,7 +123,7 @@ class PostDetails extends React.Component {
                 .fromNow()}
             </span>
             {author === currentUserName && (
-              <React.Fragment>
+              <>
                 <span className="post-details-separator">|</span>
                 <span>
                   <Link
@@ -101,9 +141,8 @@ class PostDetails extends React.Component {
                   >
                     delete
                   </Link>
-                  <span className="post-details-separator">|</span>
                 </span>
-              </React.Fragment>
+              </>
             )}
             <span className="post-details-separator">|</span>
             <span className="post-comments">
@@ -113,10 +152,26 @@ class PostDetails extends React.Component {
             </span>
             <span className="post-details-separator">|</span>
             <span className="post-comment-reply">
-              <button onClick={this.handleComment} type="button">add comment</button>
+              <button onClick={this.onCreateComment} type="button">
+                add comment
+              </button>
             </span>
           </p>
-          <CommentList comments={comments} commentCount={commentCount} />
+          <CommentList
+            comments={comments}
+            commentCount={commentCount}
+            author={author}
+            currentUserName={currentUserName}
+            onVoteUpComment={this.onVoteUpComment}
+            onVoteDownComment={this.onVoteDownComment}
+          />
+          {showCommentCreate ? (
+            <CommentCreate
+              parentId={id}
+              category={category}
+              onCancelCreateComment={this.onCancelCreateComment}
+            />
+          ) : null}
         </div>
       </div>
     );
@@ -130,11 +185,15 @@ PostDetails.propTypes = {
   voteUpPost: PropTypes.func.isRequired,
   voteDownPost: PropTypes.func.isRequired,
   getAllComments: PropTypes.func.isRequired,
+  voteUpComment: PropTypes.func.isRequired,
+  voteDownComment: PropTypes.func.isRequired,
   comments: PropTypes.instanceOf(Object).isRequired,
+  currentUserName: PropTypes.string,
 };
 
 PostDetails.defaultProps = {
   post: null,
+  currentUserName: null,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -148,6 +207,8 @@ const mapDispatchToProps = {
   voteUpPost: voteUpPostAction,
   voteDownPost: voteDownPostAction,
   getAllComments: getAllCommentsAction,
+  voteUpComment: voteUpCommentAction,
+  voteDownComment: voteDownCommentAction,
 };
 
 export default connect(

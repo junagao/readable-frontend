@@ -21,6 +21,22 @@ select:focus {
   outline: 0;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+  font-size: small;
+  padding: 0;
+  margin: 0 5px;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+button:focus {
+  outline: 0;
+}
+
 .error-message {
   color: red;
   font-size: 11px;

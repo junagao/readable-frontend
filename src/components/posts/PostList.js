@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import {
   getAllPosts as getAllPostsAction,
   getPostsByCategory as getPostsByCategoryAction,
   voteUpPost as voteUpPostAction,
   voteDownPost as voteDownPostAction,
-  sortPostsBy as sortPostsByAction,
 } from '../../actions/posts';
+import sortPostsAction from '../../actions/sort';
 import PostItem from './PostItem';
-import PostFilter from './PostFilter';
+import PostSort from './PostSort';
 import './PostList.scss';
 
 class PostList extends React.Component {
   componentDidMount() {
     const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
+
     if (selectedCategory) {
       getPostsByCategory(selectedCategory);
     } else {
@@ -24,6 +27,7 @@ class PostList extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { getAllPosts, getPostsByCategory, selectedCategory } = this.props;
+
     if (
       prevProps.selectedCategory !== selectedCategory
       && selectedCategory !== null
@@ -37,39 +41,36 @@ class PostList extends React.Component {
     }
   }
 
-  sortPosts = (posts) => {
-    const { sortPostsBy } = this.props;
-    if (sortPostsBy === 'vote') {
-      return posts.sort((a, b) => a.voteScore - b.voteScore);
+  onSortPostsBy = (sortType) => {
+    const { sortPosts, sort } = this.props;
+
+    if (sortType) {
+      sortPosts(sortType, !sort.descending);
+    } else {
+      sortPosts(sortType, sort.descending);
     }
-    if (sortPostsBy === 'date') {
-      return posts.sort((a, b) => a.timestamp - b.timestamp);
-    }
-    return posts;
   };
 
-  renderPosts = () => {
-    const { posts, currentUserName } = this.props;
+  sortPosts = (posts) => {
+    const { sort } = this.props;
 
-    const postsToSort = [...posts];
-    const sortedPosts = this.sortPosts(postsToSort);
+    if (sort.by === 'date' && sort.descending) {
+      return posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    }
 
-    return (
-      <div>
-        {sortedPosts.length
-          ? posts.map(post => (
-            <div className="post" key={post.id}>
-              <PostItem
-                {...post}
-                currentUserName={currentUserName}
-                onVoteUpPost={this.onVoteUpPost}
-                onVoteDownPost={this.onVoteDownPost}
-              />
-            </div>
-          ))
-          : 'No posts found'}
-      </div>
-    );
+    if (sort.by === 'date' && !sort.descending) {
+      return posts.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    }
+
+    if (sort.by === 'vote' && sort.descending) {
+      return posts.sort((a, b) => b.voteScore - a.voteScore);
+    }
+
+    if (sort.by === 'vote' && !sort.descending) {
+      return posts.sort((a, b) => a.voteScore - b.voteScore);
+    }
+
+    return posts;
   };
 
   onVoteUpPost = (id) => {
@@ -82,10 +83,56 @@ class PostList extends React.Component {
     voteDownPost(id);
   };
 
+  renderPosts = () => {
+    const { posts, currentUserName } = this.props;
+    const postsToSort = [...posts];
+    const sortedPosts = this.sortPosts(postsToSort);
+
+    return (
+      <div>
+        {sortedPosts.length
+          ? sortedPosts.map((post) => (
+            <div className="post" key={post.id}>
+              <PostItem
+                id={post.id}
+                title={post.title}
+                author={post.author}
+                timestamp={post.timestamp}
+                category={post.category}
+                commentCount={post.commentCount}
+                voteScore={post.voteScore}
+                currentUserName={currentUserName}
+                onVoteUpPost={this.onVoteUpPost}
+                onVoteDownPost={this.onVoteDownPost}
+              />
+            </div>
+          ))
+          : 'No posts found'}
+      </div>
+    );
+  };
+
+  getSortIcon = (sortType) => {
+    const { sort } = this.props;
+
+    if (sortType === sort.by) {
+      if (sort.descending) {
+        return <FontAwesomeIcon icon={faChevronDown} className="descending-icon" />;
+      }
+      return <FontAwesomeIcon icon={faChevronUp} className="ascending-icon" />;
+    }
+
+    return <span />;
+  }
+
   render() {
     return (
       <div>
-        <PostFilter sortPostsBy={this.sortPostsBy} />
+        <PostSort
+          onSortPostsBy={this.onSortPostsBy}
+          dateIcon={this.getSortIcon('date')}
+          voteIcon={this.getSortIcon('vote')}
+        />
         <div className="posts-container">{this.renderPosts()}</div>
       </div>
     );
@@ -100,7 +147,8 @@ PostList.propTypes = {
   currentUserName: PropTypes.string,
   voteUpPost: PropTypes.func.isRequired,
   voteDownPost: PropTypes.func.isRequired,
-  sortPostsBy: PropTypes.func.isRequired,
+  sortPosts: PropTypes.func.isRequired,
+  sort: PropTypes.instanceOf(Object).isRequired,
 };
 
 PostList.defaultProps = {
@@ -112,6 +160,7 @@ const mapStateToProps = (state, ownProps) => ({
   posts: Object.values(state.posts),
   selectedCategory: ownProps.match.params.category,
   currentUserName: state.auth.userName,
+  sort: state.sort,
 });
 
 const mapDispatchToProps = {
@@ -119,7 +168,7 @@ const mapDispatchToProps = {
   getPostsByCategory: getPostsByCategoryAction,
   voteUpPost: voteUpPostAction,
   voteDownPost: voteDownPostAction,
-  sortPostsBy: sortPostsByAction,
+  sortPosts: sortPostsAction,
 };
 
 export default connect(

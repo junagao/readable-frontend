@@ -21,8 +21,8 @@ const PostItem = ({
     <Rating
       id={id}
       currentRating={voteScore}
-      onVoteUpPost={onVoteUpPost}
-      onVoteDownPost={onVoteDownPost}
+      onVoteUp={onVoteUpPost}
+      onVoteDown={onVoteDownPost}
     />
     <div className="post-content">
       <Link to={`/${category}/${id}`} className="post-title">
@@ -37,7 +37,7 @@ const PostItem = ({
             .fromNow()}
         </span>
         {author === currentUserName && (
-          <React.Fragment>
+          <>
             <span className="post-details-separator">|</span>
             <span>
               <Link to={`/posts/edit/${id}`} className="edit-bt" type="button">
@@ -52,7 +52,7 @@ const PostItem = ({
                 delete
               </Link>
             </span>
-          </React.Fragment>
+          </>
         )}
         <span className="post-details-separator">|</span>
         <span className="post-comments">

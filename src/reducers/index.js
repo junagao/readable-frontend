@@ -4,6 +4,7 @@ import authReducer from './authReducer';
 import categoriesReducer from './categoriesReducer';
 import postsReducer from './postsReducer';
 import commentsReducer from './commentsReducer';
+import sortReducer from './sortReducer';
 
 export default combineReducers({
   form: formReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   categories: categoriesReducer,
   posts: postsReducer,
   comments: commentsReducer,
+  sort: sortReducer,
 });

@@ -13,32 +13,35 @@ class CommentEdit extends React.Component {
     const {
       getSingleComment,
       match: {
-        params: { postId },
+        params: { commentId },
       },
     } = this.props;
-    getSingleComment(postId);
+
+    getSingleComment(commentId);
   }
 
   onSubmit = (formValues) => {
     const {
       editComment,
       match: {
-        params: { postId },
+        params: { commentId },
       },
     } = this.props;
     const timestamp = Date.now();
 
-    editComment(postId, { ...formValues, timestamp });
+    editComment(commentId, { ...formValues, timestamp });
   };
 
   render() {
-    const { post } = this.props;
-    if (!post) {
+    const { comment } = this.props;
+
+    if (!comment) {
       return <div>Loading...</div>;
     }
+
     return (
       <div>
-        <h3>Edit a Post</h3>
+        <h3>Edit Comment</h3>
         <CommentForm
           initialValues={_.pick(comment, 'body')}
           onSubmit={this.onSubmit}
@@ -52,15 +55,15 @@ CommentEdit.propTypes = {
   getSingleComment: PropTypes.func.isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
   editComment: PropTypes.func.isRequired,
-  post: PropTypes.instanceOf(Object),
+  comment: PropTypes.instanceOf(Object),
 };
 
 CommentEdit.defaultProps = {
-  post: null,
+  comment: null,
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  comment: state.comments[ownProps.match.params.postId],
+  comment: state.comments[ownProps.match.params.commentId],
 });
 
 const mapDispatchToProps = {

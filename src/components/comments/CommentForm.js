@@ -1,14 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-
+import history from '../../history';
 import './CommentForm.scss';
 
 class CommentForm extends React.Component {
   onSubmit = (formValues) => {
     const { onSubmit } = this.props;
+
     onSubmit(formValues);
-  }
+  };
 
   renderError = ({ error, touched }) => {
     if (touched && error) {
@@ -18,29 +19,55 @@ class CommentForm extends React.Component {
         </div>
       );
     }
+
     return null;
-  }
+  };
 
   renderInput = ({
     input, type, placeholder, meta,
   }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+
     return (
       <div className={className}>
-        {type === 'textarea' && (<textarea placeholder={placeholder} {...input} />)}
+        {type === 'textarea' && (
+          <textarea
+            placeholder={placeholder}
+            name={input.name}
+            value={input.value}
+            onChange={input.onChange}
+          />
+        )}
         {this.renderError(meta)}
       </div>
     );
-  }
+  };
+
+  onCancelEditComment = () => {
+    history.goBack();
+  };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, onCancelCreateComment } = this.props;
+
     return (
-      <div className="new-comment">
-        <p>New Comment</p>
-        <form className="new-comment-form" onSubmit={handleSubmit(this.onSubmit)}>
-          <Field name="body" type="textarea" component={this.renderInput} placeholder="Enter comment" />
-          <button className="submit-form-button" type="submit">Submit</button>
+      <div className="comment">
+        <form className="comment-form" onSubmit={handleSubmit(this.onSubmit)}>
+          <Field
+            name="body"
+            type="textarea"
+            component={this.renderInput}
+            placeholder="Enter comment"
+          />
+          <button className="submit-form-button" type="submit">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={onCancelCreateComment || this.onCancelEditComment}
+          >
+            Cancel
+          </button>
         </form>
       </div>
     );
@@ -50,6 +77,11 @@ class CommentForm extends React.Component {
 CommentForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onCancelCreateComment: PropTypes.func,
+};
+
+CommentForm.defaultProps = {
+  onCancelCreateComment: null,
 };
 
 const validate = (formValues) => {

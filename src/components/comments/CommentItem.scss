@@ -1,0 +1,21 @@
+.comment-item {
+  display: flex;
+  align-items: baseline;
+  width: 500px;
+  border-left: 2px solid grey;
+  padding: 1px 0px 1px 10px;
+  background-color: whitesmoke;
+}
+
+.comment-content {
+  padding-left: 10px;
+}
+
+.comment-details {
+  font-size: small;
+}
+
+.comment-details-separator {
+  color: lightgray;
+  margin: 0 5px;
+}

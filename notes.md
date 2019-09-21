@@ -2,19 +2,22 @@
 
 ## Things to figure out
 
-1. Have you watched the Udemy videos about using objects in redux's reducer? What did you think about this approach? Is it better using objects or arrays? I ended up using objects as the example in Udemy. But it would be nice to hear your opinion on this.
-2. How can I render the CreateComment form component below the comments?
-3. How to add ascending and descending to sorting?
-4. How to use the same Rating component for both posts and comments?
+1. How to add ascending and descending to sorting?
 
 
 
 ## To do
 
-1. ~~Vote up and down posts~~
-2. Sort posts by date or vote
-3. ~~Fix PostDetail router to `/:category/:post_id~~`
-4. ~~Add comments counter to PostDetail~~
-5. ~~Add edit / delete button to PostDetail~~
-6. Add vote to comments
-7. Add button and form to create a new comment in PostDetail
+- [x] Vote up and down posts
+- [ ] Sort posts by date or vote
+- [x] Fix PostDetail router to `/:category/:post_id`
+- [x] Add comments counter to PostDetail
+- [x] Add edit / delete button to PostDetail
+- [x] Add vote to comments
+- [x] Add button and form to create a new comment in PostDetail
+- [x] Edit comment
+- [x] Delete comment
+- [x] Fix when add new comment need to show it on screen
+- [x] Fix when add new comment needs to update comment counter
+- [x] Fix when click on post. Only show comments regarding that particular post
+- [ ] Fix warning encountered two children with the same key
