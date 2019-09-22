@@ -16,6 +16,7 @@ import {
 import Rating from '../Rating';
 import CommentList from '../comments/CommentList';
 import CommentCreate from '../comments/CommentCreate';
+import history from '../../history';
 
 import './PostDetails.scss';
 
@@ -101,7 +102,12 @@ class PostDetails extends React.Component {
       category,
       commentCount,
       voteScore,
+      deleted,
     } = post;
+
+    if (deleted) {
+      history.push('/404');
+    }
 
     return (
       <div className="post-item">
