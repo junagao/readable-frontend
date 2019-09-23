@@ -117,9 +117,9 @@ class PostList extends React.Component {
 
     if (sortType === sort.by) {
       if (sort.descending) {
-        return <FontAwesomeIcon icon={faChevronDown} className="descending-icon" />;
+        return <FontAwesomeIcon icon={faChevronDown} className="sort-order-icon" />;
       }
-      return <FontAwesomeIcon icon={faChevronUp} className="ascending-icon" />;
+      return <FontAwesomeIcon icon={faChevronUp} className="sort-order-icon" />;
     }
 
     return <span />;
