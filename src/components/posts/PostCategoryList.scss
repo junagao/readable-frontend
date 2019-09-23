@@ -3,8 +3,17 @@
 }
 
 .category-name {
-  color: white;
+  color: #fff;
   text-decoration: none;
+}
+
+.category-name:hover {
+  text-decoration: underline;
+}
+
+.category-name:focus {
+  color: #333;
+  outline: 0;
 }
 
 .category-separator {
