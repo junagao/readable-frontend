@@ -5,7 +5,7 @@ import './PostSort.scss';
 
 const PostSort = ({ onSortPostsBy, dateIcon, voteIcon }) => (
   <div className="posts-sort">
-    <div className="sort">sort by:</div>
+    <div className="sort-by">sort by:</div>
     <div>
       <button
         onClick={(e) => onSortPostsBy(e.target.value)}
