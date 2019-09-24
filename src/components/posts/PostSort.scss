@@ -1,23 +1,27 @@
 .posts-sort {
+  align-items: baseline;
+  color: #8c8c8c;
   display: flex;
+  font-size: small;
+  margin-bottom: 24px;
 }
 
-.sort {
+.sort-by {
   margin-right: 10px; 
 }
 
-button {
+.sort-type button {
+  color: #8c8c8c;
   border: none;
   cursor: pointer;
-  font-size: small;
   padding: 0;
 }
 
-button:hover {
+.sort-type button:hover {
   text-decoration: underline;
 }
 
-button:focus {
+.sort-type button:focus {
   outline: 0;
 }
 

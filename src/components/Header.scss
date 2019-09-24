@@ -1,10 +1,10 @@
 .menu-container {
-  background-color: #F36F59;
+  background-color: #FA1A13;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 20px;
-  padding: 5px;
+  margin-bottom: 16px;
+  padding: 6px;
 }
 
 .menu-left {
@@ -15,7 +15,8 @@
   color: #fff;
   font-weight: 600;
   text-decoration: none;
-  margin-right: 20px;
+  margin-left: 8px;
+  margin-right: 24px;
 }
 
 .menu-right {

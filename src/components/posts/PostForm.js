@@ -1,8 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
-import './PostCreate.scss';
+import './PostForm.scss';
 
 class PostForm extends React.Component {
   onSubmit = (formValues) => {
@@ -87,6 +88,9 @@ class PostForm extends React.Component {
           <button className="submit-form-button" type="submit">
             Submit
           </button>
+          <Link to="/" className="cancel-form-button">
+            Cancel
+          </Link>
         </form>
       </div>
     );

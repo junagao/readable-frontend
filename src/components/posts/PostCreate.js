@@ -22,7 +22,7 @@ class PostCreate extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="post-create">
         <h3>Create Post</h3>
         <PostForm onSubmit={this.onSubmit} />
       </div>

@@ -63,6 +63,7 @@ class CommentForm extends React.Component {
             Submit
           </button>
           <button
+            className="cancel-form-button"
             type="button"
             onClick={onCancelCreateComment || this.onCancelEditComment}
           >
