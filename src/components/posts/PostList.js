@@ -89,26 +89,24 @@ class PostList extends React.Component {
     const sortedPosts = this.sortPosts(postsToSort);
 
     return (
-      <div>
-        {sortedPosts.length
-          ? sortedPosts.map((post) => (
-            <div className="post" key={post.id}>
-              <PostItem
-                id={post.id}
-                title={post.title}
-                author={post.author}
-                timestamp={post.timestamp}
-                category={post.category}
-                commentCount={post.commentCount}
-                voteScore={post.voteScore}
-                currentUserName={currentUserName}
-                onVoteUpPost={this.onVoteUpPost}
-                onVoteDownPost={this.onVoteDownPost}
-              />
-            </div>
-          ))
-          : 'No posts found'}
-      </div>
+      sortedPosts.length
+        ? sortedPosts.map((post) => (
+          <div className="post" key={post.id}>
+            <PostItem
+              id={post.id}
+              title={post.title}
+              author={post.author}
+              timestamp={post.timestamp}
+              category={post.category}
+              commentCount={post.commentCount}
+              voteScore={post.voteScore}
+              currentUserName={currentUserName}
+              onVoteUpPost={this.onVoteUpPost}
+              onVoteDownPost={this.onVoteDownPost}
+            />
+          </div>
+        ))
+        : 'No posts found'
     );
   };
 
