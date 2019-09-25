@@ -55,11 +55,11 @@ class PostList extends React.Component {
     const { sort } = this.props;
 
     if (sort.by === 'title' && sort.descending) {
-      return posts.sort((a, b) => (a.title > b.title ? 1 : -1));
+      return posts.sort((a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1));
     }
 
     if (sort.by === 'title' && !sort.descending) {
-      return posts.sort((a, b) => (a.title < b.title ? 1 : -1));
+      return posts.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1));
     }
 
     if (sort.by === 'date' && sort.descending) {
