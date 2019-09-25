@@ -54,6 +54,14 @@ class PostList extends React.Component {
   sortPosts = (posts) => {
     const { sort } = this.props;
 
+    if (sort.by === 'title' && sort.descending) {
+      return posts.sort((a, b) => (a.title > b.title ? 1 : -1));
+    }
+
+    if (sort.by === 'title' && !sort.descending) {
+      return posts.sort((a, b) => (a.title < b.title ? 1 : -1));
+    }
+
     if (sort.by === 'date' && sort.descending) {
       return posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
     }
@@ -127,6 +135,7 @@ class PostList extends React.Component {
       <>
         <PostSort
           onSortPostsBy={this.onSortPostsBy}
+          titleIcon={this.getSortIcon('title')}
           dateIcon={this.getSortIcon('date')}
           voteIcon={this.getSortIcon('vote')}
         />
