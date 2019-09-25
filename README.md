@@ -8,11 +8,9 @@ I chose to build this project from scratch using React, Webpack, Babel, ESlint, 
 
 ## 👀 Demo and Screenshots
 
-For a demo, check out 
+For a demo, check out: https://readable-app.netlify.com
 
-![readable-screenshot-1](./src/assets/images/readable-screenshot-1.png)
-
-![readable-screenshot-2](./src/assets/images/readable-screenshot-2.png)
+![readable-gif](./src/assets/images/readable.gif)
 
 ## 🚀 Quick start
 
