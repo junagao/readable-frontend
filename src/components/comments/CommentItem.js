@@ -25,7 +25,7 @@ const CommentItem = ({
     />
     <div className="comment-content">
       <p>{body}</p>
-      <p className="comment-details">
+      <div className="comment-details">
         <span className="comment-author">{`by ${author} `}</span>
         <span className="comment-date">
           {moment(timestamp)
@@ -35,26 +35,24 @@ const CommentItem = ({
         {author === currentUserName && (
           <>
             <span className="comment-details-separator">|</span>
-            <span>
-              <Link
-                to={`/comments/edit/${id}`}
-                className="edit-bt"
-                type="button"
-              >
-                edit
-              </Link>
-              <span className="comment-details-separator">|</span>
-              <Link
-                to={`/comments/delete/${id}`}
-                className="delete-bt"
-                type="button"
-              >
-                delete
-              </Link>
-            </span>
+            <Link
+              to={`/comments/edit/${id}`}
+              className="edit-bt"
+              type="button"
+            >
+              edit
+            </Link>
+            <span className="comment-details-separator">|</span>
+            <Link
+              to={`/comments/delete/${id}`}
+              className="delete-bt"
+              type="button"
+            >
+              delete
+            </Link>
           </>
         )}
-      </p>
+      </div>
     </div>
   </div>
 );
