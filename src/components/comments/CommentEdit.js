@@ -7,6 +7,7 @@ import {
   editComment as editCommentAction,
 } from '../../actions/comments';
 import CommentForm from './CommentForm';
+import './CommentEdit.scss';
 
 class CommentEdit extends React.Component {
   componentDidMount() {
@@ -40,7 +41,7 @@ class CommentEdit extends React.Component {
     }
 
     return (
-      <div>
+      <div className="comment-edit">
         <h3>Edit Comment</h3>
         <CommentForm
           initialValues={_.pick(comment, 'body')}
