@@ -70,7 +70,7 @@ class PostForm extends React.Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className="post">
+      <div className="post-create-form">
         <form className="post-form" onSubmit={handleSubmit(this.onSubmit)}>
           <Field
             name="title"

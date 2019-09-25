@@ -28,7 +28,7 @@ const PostItem = ({
       <Link to={`/${category}/${id}`} className="post-title">
         {title}
       </Link>
-      <p className="post-details">
+      <div className="post-details">
         <span className="post-author">{`by ${author} `}</span>
         <span className="post-category">{`in ${category} `}</span>
         <span className="post-date">
@@ -60,7 +60,7 @@ const PostItem = ({
             ? `${commentCount} comment`
             : `${commentCount} comments`}
         </span>
-      </p>
+      </div>
     </div>
   </div>
 );

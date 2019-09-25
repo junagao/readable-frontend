@@ -1,10 +1,43 @@
-.post-title {
-  font-size: 18px;
-  color: #444;
+.post-details-item {
+  display: flex;
 }
 
-.post-details {
+.post-details-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-details-title {
+  color: #444;
+  font-size: 16px;
+}
+
+.post-details-content h1,
+.post-details-content p {
+  margin: 0;
+}
+
+.post-details-content p {
+  margin-top: 16px;
+}
+
+.post-item-details {
   color: #8c8c8c;
   font-size: small;
-  margin-bottom: 20px;
+  margin: 16px 0px;
+}
+
+.post-comment-reply-button {
+  border: none;
+  cursor: pointer;
+  font-size: small;
+  padding: 0;
+}
+
+.post-comment-reply-button:hover {
+  text-decoration: underline;
+}
+
+.post-comment-reply-button:focus {
+  outline: 0;
 }

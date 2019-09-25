@@ -1,0 +1,30 @@
+.submit-delete-button {
+  background-color: #fa1a13;
+  border-radius: 3px;
+  border: 1px solid #fa1a13;
+  color: #fff;
+  font-family: 'Roboto';
+  font-size: small;
+  margin-top: 8px;
+  padding: 4px 6px;
+}
+
+.submit-delete-button:hover {
+  background-color: #e51710;
+  text-decoration: none;
+}
+
+.cancel-delete-button {
+  border-radius: 3px;
+  border: 1px solid #fa1a13;
+  color: #fa1a13;
+  font-size: small;
+  margin-left: 8px;
+  padding: 4px 6px;
+  text-decoration: none;
+}
+
+.cancel-delete-button:hover {
+  background-color: rgb(252, 234, 233);
+  text-decoration: none;
+}

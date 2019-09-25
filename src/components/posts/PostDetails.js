@@ -110,17 +110,17 @@ class PostDetails extends React.Component {
     }
 
     return (
-      <div className="post-item">
+      <div className="post-details-item">
         <Rating
           id={id}
           currentRating={voteScore}
           onVoteUp={this.onVoteUpPost}
           onVoteDown={this.onVoteDownPost}
         />
-        <div className="post-content">
-          <h1 className="post-title">{title}</h1>
+        <div className="post-details-content">
+          <h1 className="post-details-title">{title}</h1>
           <p>{body}</p>
-          <p className="post-details">
+          <div className="post-item-details">
             <span className="post-author">{`by ${author} `}</span>
             <span className="post-category">{`in ${category} `}</span>
             <span className="post-date">
@@ -157,12 +157,14 @@ class PostDetails extends React.Component {
                 : `${commentCount} comments`}
             </span>
             <span className="post-details-separator">|</span>
-            <span className="post-comment-reply">
-              <button onClick={this.onCreateComment} type="button">
-                add comment
-              </button>
-            </span>
-          </p>
+            <button
+              className="post-comment-reply-button"
+              onClick={this.onCreateComment}
+              type="button"
+            >
+              add comment
+            </button>
+          </div>
           <CommentList
             comments={comments}
             commentCount={commentCount}

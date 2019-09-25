@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Modal from '../Modal';
 import history from '../../history';
 import {
   getSinglePost as getSinglePostAction,
   deletePost as deletePostAction,
 } from '../../actions/posts';
+import './PostDelete.scss';
 
 class PostDelete extends React.Component {
   componentDidMount() {
@@ -33,14 +33,18 @@ class PostDelete extends React.Component {
       <>
         <button
           onClick={() => deletePost(postId)}
-          className="delete"
+          className="submit-delete-button"
           type="button"
         >
           Delete
         </button>
-        <Link to="/" className="cancel" type="button">
+        <button
+          onClick={() => history.goBack()}
+          className="cancel-delete-button"
+          type="button"
+        >
           Cancel
-        </Link>
+        </button>
       </>
     );
   };

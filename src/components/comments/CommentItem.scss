@@ -1,10 +1,10 @@
 .comment-item {
-  display: flex;
   align-items: baseline;
-  width: 500px;
-  border-left: 2px solid grey;
-  padding: 1px 0px 1px 10px;
   background-color: whitesmoke;
+  border-left: 2px solid grey;
+  display: flex;
+  padding: 1px 0px 1px 10px;
+  width: 500px;
 }
 
 .comment-content {
