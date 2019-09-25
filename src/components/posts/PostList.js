@@ -91,20 +91,19 @@ class PostList extends React.Component {
     return (
       sortedPosts.length
         ? sortedPosts.map((post) => (
-          <div className="post" key={post.id}>
-            <PostItem
-              id={post.id}
-              title={post.title}
-              author={post.author}
-              timestamp={post.timestamp}
-              category={post.category}
-              commentCount={post.commentCount}
-              voteScore={post.voteScore}
-              currentUserName={currentUserName}
-              onVoteUpPost={this.onVoteUpPost}
-              onVoteDownPost={this.onVoteDownPost}
-            />
-          </div>
+          <PostItem
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            author={post.author}
+            timestamp={post.timestamp}
+            category={post.category}
+            commentCount={post.commentCount}
+            voteScore={post.voteScore}
+            currentUserName={currentUserName}
+            onVoteUpPost={this.onVoteUpPost}
+            onVoteDownPost={this.onVoteDownPost}
+          />
         ))
         : 'No posts found'
     );
@@ -125,7 +124,7 @@ class PostList extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <PostSort
           onSortPostsBy={this.onSortPostsBy}
           dateIcon={this.getSortIcon('date')}
