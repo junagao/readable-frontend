@@ -7,6 +7,7 @@ import {
   editPost as editPostAction,
 } from '../../actions/posts';
 import PostForm from './PostForm';
+import './PostEdit.scss';
 
 class PostEdit extends React.Component {
   componentDidMount() {
@@ -40,7 +41,7 @@ class PostEdit extends React.Component {
     }
 
     return (
-      <div>
+      <div className="post-edit">
         <h3>Edit a Post</h3>
         <PostForm
           initialValues={_.pick(post, 'title', 'body', 'category')}
