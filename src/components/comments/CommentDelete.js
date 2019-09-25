@@ -32,14 +32,14 @@ class CommentDelete extends React.Component {
       <>
         <button
           onClick={() => deleteComment(commentId)}
-          className="delete"
+          className="submit-delete-button"
           type="button"
         >
           Delete
         </button>
         <button
           onClick={() => history.goBack()}
-          className="cancel"
+          className="cancel-delete-button"
           type="button"
         >
           Cancel
@@ -48,21 +48,10 @@ class CommentDelete extends React.Component {
     );
   };
 
-  renderContent = () => {
-    const { comment } = this.props;
-
-    if (!comment) {
-      return 'Are you sure you want to delete this comment?';
-    }
-
-    return `Are you sure you want to delete the comment with title: ${comment.title}`;
-  };
-
   render() {
     return (
       <Modal
-        title="Delete Comment"
-        content={this.renderContent()}
+        content="Are you sure you want to delete this comment?"
         actions={this.renderActions()}
         onDismiss={() => history.push('/')}
       />
@@ -73,17 +62,8 @@ class CommentDelete extends React.Component {
 CommentDelete.propTypes = {
   getSingleComment: PropTypes.func.isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
-  comment: PropTypes.instanceOf(Object),
   deleteComment: PropTypes.func.isRequired,
 };
-
-CommentDelete.defaultProps = {
-  comment: null,
-};
-
-const mapStateToProps = (state, ownProps) => ({
-  comment: state.comments[ownProps.match.params.postId],
-});
 
 const mapDispatchToProps = {
   getSingleComment: getSingleCommentAction,
@@ -91,6 +71,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(CommentDelete);
