@@ -1,18 +1,21 @@
 .comment-item {
-  align-items: baseline;
+  align-items: center;
   background-color: whitesmoke;
   border-left: 2px solid grey;
   display: flex;
-  padding: 1px 0px 1px 10px;
+  padding: 8px 0px 8px 10px;
   width: 500px;
 }
 
 .comment-content {
+  display: flex;
+  flex-direction: column;
   padding-left: 10px;
 }
 
 .comment-details {
   font-size: small;
+  margin-top: 16px;
 }
 
 .comment-details-separator {
