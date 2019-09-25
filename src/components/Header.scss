@@ -1,8 +1,8 @@
 .menu-container {
-  background-color: #FA1A13;
+  align-items: baseline;
+  background-color: #fa1a13;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   margin-bottom: 16px;
   padding: 6px;
 }
@@ -14,19 +14,20 @@
 .logo {
   color: #fff;
   font-weight: 600;
-  text-decoration: none;
   margin-left: 8px;
   margin-right: 24px;
+  text-decoration: none;
 }
 
 .menu-right {
-  display: flex;
-  justify-content: space-between;
   align-items: baseline;
+  display: flex;
   font-size: small;
+  justify-content: space-between;
 }
 
-.create-post, .user-name {
+.create-post,
+.user-name {
   color: #fff;
   font-size: 14px;
   margin-right: 8px;
