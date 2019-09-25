@@ -131,8 +131,8 @@ class PostList extends React.Component {
           dateIcon={this.getSortIcon('date')}
           voteIcon={this.getSortIcon('vote')}
         />
-        <div className="posts-container">{this.renderPosts()}</div>
-      </div>
+        <div className="posts-list">{this.renderPosts()}</div>
+      </>
     );
   }
 }
