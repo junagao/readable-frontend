@@ -131,23 +131,21 @@ class PostDetails extends React.Component {
             {author === currentUserName && (
               <>
                 <span className="post-details-separator">|</span>
-                <span>
-                  <Link
-                    to={`/posts/edit/${id}`}
-                    className="edit-bt"
-                    type="button"
-                  >
-                    edit
-                  </Link>
-                  <span className="post-details-separator">|</span>
-                  <Link
-                    to={`/posts/delete/${id}`}
-                    className="delete-bt"
-                    type="button"
-                  >
-                    delete
-                  </Link>
-                </span>
+                <Link
+                  to={`/posts/edit/${id}`}
+                  className="edit-bt"
+                  type="button"
+                >
+                  edit
+                </Link>
+                <span className="post-details-separator">|</span>
+                <Link
+                  to={`/posts/delete/${id}`}
+                  className="delete-bt"
+                  type="button"
+                >
+                  delete
+                </Link>
               </>
             )}
             <span className="post-details-separator">|</span>
