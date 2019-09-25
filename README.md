@@ -10,7 +10,7 @@ I chose to build this project from scratch using React, Webpack, Babel, ESlint, 
 
 For a demo, check out: https://readable-app.netlify.com
 
-![readable-gif](./src/assets/images/readable.gif)
+![readable-gif](./src/assets/images/readable-preview.gif)
 
 ## 🚀 Quick start
 
