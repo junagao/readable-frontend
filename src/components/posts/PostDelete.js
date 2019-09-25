@@ -49,21 +49,10 @@ class PostDelete extends React.Component {
     );
   };
 
-  renderContent = () => {
-    const { post } = this.props;
-
-    if (!post) {
-      return 'Are you sure you want to delete this post?';
-    }
-
-    return `Are you sure you want to delete the post with title: ${post.title}`;
-  };
-
   render() {
     return (
       <Modal
-        title="Delete Post"
-        content={this.renderContent()}
+        content="Are you sure you want to delete this post?"
         actions={this.renderActions()}
         onDismiss={() => history.push('/')}
       />
@@ -74,17 +63,8 @@ class PostDelete extends React.Component {
 PostDelete.propTypes = {
   getSinglePost: PropTypes.func.isRequired,
   match: PropTypes.instanceOf(Object).isRequired,
-  post: PropTypes.instanceOf(Object),
   deletePost: PropTypes.func.isRequired,
 };
-
-PostDelete.defaultProps = {
-  post: null,
-};
-
-const mapStateToProps = (state, ownProps) => ({
-  post: state.posts[ownProps.match.params.postId],
-});
 
 const mapDispatchToProps = {
   getSinglePost: getSinglePostAction,
@@ -92,6 +72,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(PostDelete);
