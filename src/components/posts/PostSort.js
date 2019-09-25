@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import './PostSort.scss';
 
-const PostSort = ({ onSortPostsBy, dateIcon, voteIcon }) => (
+const PostSort = ({
+  onSortPostsBy, titleIcon, dateIcon, voteIcon,
+}) => (
   <div className="posts-sort">
     <div className="sort-by">sort by:</div>
     <div className="sort-type">
@@ -14,6 +16,15 @@ const PostSort = ({ onSortPostsBy, dateIcon, voteIcon }) => (
       >
         date
         {dateIcon}
+      </button>
+      <span className="post-details-separator">|</span>
+      <button
+        onClick={(e) => onSortPostsBy(e.target.value)}
+        value="title"
+        type="button"
+      >
+        title
+        {titleIcon}
       </button>
       <span className="post-details-separator">|</span>
       <button
@@ -30,6 +41,7 @@ const PostSort = ({ onSortPostsBy, dateIcon, voteIcon }) => (
 
 PostSort.propTypes = {
   onSortPostsBy: PropTypes.func.isRequired,
+  titleIcon: PropTypes.instanceOf(Object).isRequired,
   dateIcon: PropTypes.instanceOf(Object).isRequired,
   voteIcon: PropTypes.instanceOf(Object).isRequired,
 };
