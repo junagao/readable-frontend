@@ -7,12 +7,14 @@
   flex-direction: column;
 }
 
-.post-form input, .post-form textarea, .post-form select {
-  width: 500px;
+.post-form input,
+.post-form textarea,
+.post-form select {
   border-radius: 3px;
-  border: 1px solid grey;
-  padding: 5px;
+  border: 1px solid #d5d5d5;
   margin-bottom: 8px;
+  padding: 5px;
+  width: 500px;
 }
 
 .post-form textarea {
@@ -26,34 +28,37 @@
 }
 
 .error-message {
-  color: #FA1A13;
+  color: #fa1a13;
   font-size: 11px;
   margin-bottom: 8px;
 }
 
-.field.error input, .field.error textarea {
-  border-color: #e0b4b4;
+.field.error input,
+.field.error textarea {
   background-color: #fff6f6;
+  border-color: #e0b4b4;
 }
 
 .submit-form-button {
-  margin-top: 8px;
-  color: #fff;
-  background-color: #FA1A13;
-  border: 1px solid #FA1A13;
+  background-color: #fa1a13;
   border-radius: 3px;
+  border: 1px solid #fa1a13;
+  color: #fff;
+  font-family: 'Roboto';
+  font-size: small;
+  margin-top: 8px;
   padding: 4px 6px;
 }
 
 .submit-form-button:hover {
- background-color: #E51710;
- text-decoration: none;
+  background-color: #e51710;
+  text-decoration: none;
 }
 
 .cancel-form-button {
-  color: #FA1A13;
-  border: 1px solid #FA1A13;
   border-radius: 3px;
+  border: 1px solid #fa1a13;
+  color: #fa1a13;
   font-size: small;
   margin-left: 8px;
   padding: 4px 6px;
