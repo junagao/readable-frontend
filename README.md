@@ -8,8 +8,6 @@ I chose to build this project from scratch using React, Webpack, Babel, ESlint, 
 
 ## 👀 Demo and Screenshots
 
-For a demo, check out: https://readable-app.netlify.com
-
 ![readable-gif](./src/assets/images/readable-preview.gif)
 
 ## 🚀 Quick start
@@ -80,7 +78,6 @@ node server
 * Redux-form to manage forms with field validation
 * Confirm modal dialog to delete posts or comments
 * Google User Authentication
-* Deployment
 
 ## 📚 Tech Stack
 
