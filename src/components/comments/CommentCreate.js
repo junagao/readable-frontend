@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid/v4';
 import { createComment as createCommentAction } from '../../actions/comments';
 import CommentForm from './CommentForm';
+import './CommentCreate.scss';
 
 class CommentCreate extends React.Component {
   onSubmit = (formValues) => {
@@ -30,7 +31,7 @@ class CommentCreate extends React.Component {
     const { onCancelCreateComment } = this.props;
 
     return (
-      <div>
+      <div className="comment-create">
         <h3>Create Comment</h3>
         <CommentForm
           onSubmit={this.onSubmit}
