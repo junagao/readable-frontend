@@ -1,17 +1,22 @@
 .post-item {
   display: flex;
-  align-items: baseline;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
 }
 
 .post-title {
-  font-size: 16px;
   color: #444;
+  font-size: 16px;
 }
 
 .post-details {
-  font-size: small;
   color: #8c8c8c;
+  font-size: small;
+  margin-top: 16px;
 }
 
 .post-details-separator {
@@ -19,17 +24,7 @@
   margin: 0 5px;
 }
 
-button {
-  border: none;
-  cursor: pointer;
-  font-size: small;
-  padding: 0;
-}
-
-button:hover {
-  text-decoration: underline;
-}
-
-button:focus {
-  outline: 0;
+.delete-bt,
+.edit-bt {
+  color: #000;
 }
