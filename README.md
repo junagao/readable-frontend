@@ -6,9 +6,7 @@ This is my second project for Udacity's React Nanodegree Program.
 
 I chose to build this project from scratch using React, Webpack, Babel, ESlint, instead of using plain Create React App.
 
-## 👀 Demo and Preview
-
-For a demo, check out https://readable-app.netlify.com/
+## 👀 Preview
 
 ![readable-gif](./src/assets/images/readable-preview.gif)
 
